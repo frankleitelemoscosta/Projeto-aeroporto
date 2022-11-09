@@ -1,22 +1,24 @@
 
 
-
+//inicio das bibliotecas
 #ifndef AVIAO_HPP
 #define AVIAO_HPP
 #include <string>
 #include <iostream>
 #include <stdlib.h>
-
 using namespace std;
+//fim das bibliotecas
 
 //Definindo uma lista encadeada de obejtos:
 class Aviao
 {    
     private:
-        Aviao* prox = NULL;
-        int num_passageiros = 0, minutos_de_combustivel = 0, ID = 0;
-        string compania = " ";
-
+        Aviao *proximo;
+        int num_passageiros;
+        int minutos_de_combustivel;
+        int ID;
+        string compania;
+    //fim dos atributos
     public:
         //Construtores de Avião:
         Aviao();
@@ -37,6 +39,9 @@ class Aviao
 
         string Declarar_compania(string compania);
         string Pegar_compania();
-
+        //fim dos métodos
 };
+
 #endif
+
+//fim do código
