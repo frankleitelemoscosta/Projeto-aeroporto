@@ -12,6 +12,7 @@ class Fila_Aerea
     private:
         Aviao *ponta;
         Aviao *dianteira;
+        int tamanho;
 
     public:
         Fila_Aerea();

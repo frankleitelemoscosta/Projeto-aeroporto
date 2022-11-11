@@ -16,12 +16,14 @@ Fila_Aerea::Fila_Aerea()
     
     Aviao* ponta = new Aviao(0, 0, " ");
     dianteira = ponta;
+    tamanho=0;
 }
 
 Fila_Aerea::Fila_Aerea(int num_passageiros, int minutos_de_combustivel, string compania)//"/Declarando método da classe nó que cria a frente da carrinho com um objeto do tipo Node na frente e um objeto na parte de trás que também tem o mesmo valor e da frente.
 {
     Aviao* ponta = new Aviao(num_passageiros, minutos_de_combustivel, compania);
     dianteira = ponta;
+    tamanho=1;
 }
 
 
@@ -36,6 +38,30 @@ bool Fila_Aerea::vazia() //verifica se a carrinho está vazia
 //Insere elemento no final do carrinho:
 void Fila_Aerea::inserir_final(int num_passageiros, int minutos_de_combustivel, string compania) {
     Aviao *novo_no = new Aviao(num_passageiros, minutos_de_combustivel, compania);
+    
+
+    //!!! DÚVIDA!!! - é necessário que seja concedido um ID(número aleatório ímpar) e um número que representa quanto tempo aquele avião pode permanecer em vôo
+                    //OU é necessaŕio que seja concedido um ID sendo este um número que representa quanto tempo aquele avião pode permanecer em vôo esperando na fila aerea 
+
+    //Gerando ID de um avião que chega em uma lista de espera:
+    /*ID - É uma quantidade de tempo ímpar que um avião deve permanecer em uma fila aerea antes de decolar*/
+    int ID;
+
+    /*Caso esse ID seja par é importante que consideremos sempre uma quantidade de combustível segura, sendo assim
+    fazemos com que o programa interprete que ele tem menos combustível que na realidade*/
+    if((novo_no->Pegar_minutos_de_combustivel())%2==0)
+    {
+        ID = novo_no->Pegar_minutos_de_combustivel()-1;
+    }
+    else
+    {
+        ID = novo_no->Pegar_minutos_de_combustivel();
+    }
+
+    novo_no->Declarar_ID(ID);
+
+
+    
     if (vazia()) {
         ponta = novo_no;
         dianteira = novo_no;
