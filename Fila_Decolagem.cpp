@@ -49,25 +49,31 @@ bool Fila_Decolagem::vazia() //verifica se a carrinho está vazia
 void Fila_Decolagem::inserir_final(int num_passageiros, int minutos_de_combustivel, string compania) {
     Aviao *novo_no = new Aviao(num_passageiros, minutos_de_combustivel, compania);
     
-    //!!! DÚVIDA!!! - é necessário que seja concedido um ID(número aleatório ímpar) e um número que representa quanto tempo aquele avião pode permanecer em vôo
-                    //OU é necessaŕio que seja concedido um ID sendo este um número que representa quanto tempo aquele avião pode permanecer em vôo esperando na fila aerea 
+     int ID,erro=1,espera_estimada_minutos;
 
-    //Gerando ID de um avião que chega em uma lista de espera:
-    /*ID - É uma quantidade de tempo ímpar que um avião deve permanecer em uma fila aerea antes de decolar*/
-    int ID;
+    //Criar um número de espera para os aviões de pista de Decolagem que siga o parâmetro apresentado pelo Frank no quadro, ou seja
+        //Veja quantos aviões estão em sua frente... o número estimado de espera é igual ao número de aviões
+        //em sua frente +1:
+    
+    espera_estimada_minutos = this->size()+1;
+    novo_no->Declarar_espera_para_decolagem(espera_estimada_minutos);
 
-    /*Caso esse ID seja par é importante que consideremos sempre uma quantidade de combustível segura, sendo assim
-    fazemos com que o programa interprete que ele tem menos combustível que na realidade*/
-    if((novo_no->Pegar_minutos_de_combustivel())%2==0)
+    while(erro==1)
     {
-        ID = novo_no->Pegar_minutos_de_combustivel();
+        cout<<"Insira aqui um ID par para o seu avião:";
+        cin>>ID;
+        novo_no->Declarar_ID(ID);
+        
+        if(ID%2!=0)
+            erro=1;
+        
+        else
+        {
+            erro=0;
+            break;
+        }
+    
     }
-    else
-    {
-        ID = novo_no->Pegar_minutos_de_combustivel()-1;
-    }
-
-    novo_no->Declarar_ID(ID);
 
 
     if (vazia()) {

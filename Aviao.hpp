@@ -16,8 +16,10 @@ class Aviao
         Aviao *proximo;
         int num_passageiros;
         int minutos_de_combustivel;
+        int minutos_para_emergencia;
         int ID;
         string compania;
+        int espera_para_decolagem;
     //fim dos atributos
     public:
         //Construtores de Avião:
@@ -39,6 +41,12 @@ class Aviao
 
         string Declarar_compania(string compania);
         string Pegar_compania();
+
+        int Declarar_minutos_para_emergencia(int minutos_para_emergencia);
+        int Pegar_minutos_para_emergencia();
+
+        int Declarar_espera_para_decolagem(int espera_para_decolagem);
+        int Pegar_espera_para_decolagem();
         //fim dos métodos
 };
 

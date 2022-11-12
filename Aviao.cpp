@@ -10,9 +10,10 @@ Aviao::Aviao(int num_passageiros, int minutos_de_combustivel, string compania)
   this-> proximo = nullptr;
   this->num_passageiros = num_passageiros;
   this->minutos_de_combustivel = minutos_de_combustivel;
-  this->ID = ID;
+  this->ID = 0;
   this->compania = compania;
-
+  this->minutos_para_emergencia = -1; 
+  this->espera_para_decolagem = -1; 
 }
 
 
@@ -67,6 +68,28 @@ string Aviao::Declarar_compania(string compania)
 {
   return this->compania = compania;
 }
+
+
+int Aviao::Pegar_minutos_para_emergencia() 
+{
+  return this->minutos_para_emergencia;
+}
+
+int Aviao::Declarar_minutos_para_emergencia(int minutos_para_emergencia) 
+{
+  return this->minutos_para_emergencia = minutos_para_emergencia;
+}
+
+int Aviao::Pegar_espera_para_decolagem() 
+{
+  return this->espera_para_decolagem;
+}
+
+int Aviao::Declarar_espera_para_decolagem(int espera_para_decolagem) 
+{
+  return this->espera_para_decolagem = espera_para_decolagem;
+}
+
 
 //fim dos gets e sets
 

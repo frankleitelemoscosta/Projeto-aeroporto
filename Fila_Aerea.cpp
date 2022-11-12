@@ -39,27 +39,26 @@ bool Fila_Aerea::vazia() //verifica se a carrinho está vazia
 void Fila_Aerea::inserir_final(int num_passageiros, int minutos_de_combustivel, string compania) {
     Aviao *novo_no = new Aviao(num_passageiros, minutos_de_combustivel, compania);
     
+    int ID,erro=1;
 
-    //!!! DÚVIDA!!! - é necessário que seja concedido um ID(número aleatório ímpar) e um número que representa quanto tempo aquele avião pode permanecer em vôo
-                    //OU é necessaŕio que seja concedido um ID sendo este um número que representa quanto tempo aquele avião pode permanecer em vôo esperando na fila aerea 
+    novo_no->Declarar_minutos_para_emergencia(novo_no->Pegar_minutos_de_combustivel()-1);
 
-    //Gerando ID de um avião que chega em uma lista de espera:
-    /*ID - É uma quantidade de tempo ímpar que um avião deve permanecer em uma fila aerea antes de decolar*/
-    int ID;
-
-    /*Caso esse ID seja par é importante que consideremos sempre uma quantidade de combustível segura, sendo assim
-    fazemos com que o programa interprete que ele tem menos combustível que na realidade*/
-    if((novo_no->Pegar_minutos_de_combustivel())%2==0)
+    while(erro==1)
     {
-        ID = novo_no->Pegar_minutos_de_combustivel()-1;
+        cout<<"Insira aqui um ID ímpar para o seu avião:";
+        cin>>ID;
+        novo_no->Declarar_ID(ID);
+        
+        if(ID%2==0)
+            erro=1;
+        
+        else
+        {
+            erro=0;
+            break;
+        }
+    
     }
-    else
-    {
-        ID = novo_no->Pegar_minutos_de_combustivel();
-    }
-
-    novo_no->Declarar_ID(ID);
-
 
     
     if (vazia()) {
