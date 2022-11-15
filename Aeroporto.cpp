@@ -38,6 +38,7 @@ void Aeroporto::remover_da_fila_decolagem()
 
 void Aeroporto::impressao_filas()
 {
+    //aqui o que ocorre é que o programa acessa as duas pistas com suas duas filas para ler as filas por completo
     pista_1.mostrar_filas();
     pista_2.mostrar_filas();
 }

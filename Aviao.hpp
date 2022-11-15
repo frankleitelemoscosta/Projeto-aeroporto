@@ -28,7 +28,7 @@ class Aviao
         Aviao(int num_passageiros, int minutos_de_combustivel, string compania);
 
         //Gets e Sets de Avião:
-        void Inserir_proximo(Aviao *Ponteiro);
+        void Inserir_proximo(Aviao *ponteiro);
         Aviao *Pegar_proximo();
 
         int Inserir_num_passageiros(int num_passageiros);

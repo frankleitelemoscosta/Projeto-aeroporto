@@ -16,7 +16,7 @@ Aviao::Aviao(int num_passageiros, int minutos_de_combustivel, string compania)
   this->espera_para_decolagem = -1; 
 }
 
-
+//para alocação de memoria:
 void Aviao::Inserir_proximo(Aviao *ponteiro)
 {
   this->proximo = ponteiro;
@@ -26,6 +26,7 @@ Aviao* Aviao::Pegar_proximo()
 {
   return this->proximo;
 }
+//fim 
 
 
 //Gets e Sets da classe:

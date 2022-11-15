@@ -40,6 +40,7 @@ void Fila_Aerea::inserir_na_fila(int id) {
 
         ponta = novo_no;
         dianteira = novo_no;
+        ponta->Inserir_proximo(nullptr);
     
     } else {
 
@@ -50,6 +51,7 @@ void Fila_Aerea::inserir_na_fila(int id) {
     }
 
     dianteira->Inserir_ID(id);
+
     cout << endl;
     cout << endl;
     cout << "CADASTRO REALIZADO COM SUCESSO!!";
@@ -73,12 +75,12 @@ void Fila_Aerea::mostrar_todos()
         while(ponteiro)
         {
                 //Mostrar todos os atributos:
-                cout<<"Número de passageiros: "<<ponteiro->Pegar_num_passageiros()<<endl;
-                cout<<"Minutos de Combustível: "<<ponteiro->Pegar_minutos_de_combustivel()<<endl;
-                cout<<"Compania: "<<ponteiro->Pegar_compania()<<endl;
-                cout<<"ID: "<<ponteiro->Pegar_ID()<<endl;
-                cout<<endl;
-                cout<<endl;
+            cout<<"Número de passageiros: "<<ponteiro->Pegar_num_passageiros()<<endl;
+            cout<<"Minutos de Combustível: "<<ponteiro->Pegar_minutos_de_combustivel()<<endl;
+            cout<<"Compania: "<<ponteiro->Pegar_compania()<<endl;
+            cout<<"ID: "<<ponteiro->Pegar_ID()<<endl;
+            cout<<endl;
+            cout<<endl;
 
             ponteiro = ponteiro->Pegar_proximo();
         }
@@ -145,6 +147,7 @@ int Fila_Aerea::size()
         tamanho++;
         ponteiro = ponteiro->Pegar_proximo();
     }
+    
     return tamanho;
 }
 
@@ -153,14 +156,15 @@ void Fila_Aerea::remover()
 
     //inicio das variaveis locais
         Aviao *ponteiro = new Aviao();
+        ponteiro = ponta;
     //fim das variaveis locais
 
     if(!vazia())
     {
         ponta = ponta->Pegar_proximo();
+        free(ponteiro);//deletando da memoria o nó anterior
         return;
     }
-
     else
     {
         cout<<"Esta fila está vazia"<<endl<<endl;

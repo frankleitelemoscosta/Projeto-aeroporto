@@ -6,7 +6,7 @@
 #define FILA_AEREA_HPP
 
 //inicio das bibliotecas
-#include "Aviao.hpp"
+    #include "Aviao.hpp"
 //fim das bibliotecas
 
 class Fila_Aerea
@@ -16,10 +16,8 @@ class Fila_Aerea
         Aviao *dianteira;
         int tamanho;
 //fim dos atributos
-
     public:
         Fila_Aerea();
-        //Fila_Aerea(int num_passageiros, int minutos_de_combustivel, string compania);
 
         bool vazia();
         void inserir_na_fila(int id);
