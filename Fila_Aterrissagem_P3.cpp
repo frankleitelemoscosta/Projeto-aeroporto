@@ -4,25 +4,27 @@
 
 // compile com: g++ Fila_Aterrissagem_P3.hpp Fila_Aterrissagem_P3.cpp Fila_jur.hpp Fila_jur.cpp Aviao.hpp Aviao.cpp Pessoa_jur.hpp Pessoa_jur.cpp Pessoa.hpp Pessoa.hpp main.cpp -o ex
 
-#include "Fila_Aterrissagem_P3.hpp"
-#include <iostream>
-#include <string>
-#include <cstring>
+//inicio das bibliotecas
+    #include "Fila_Aterrissagem_P3.hpp"
+    #include <iostream>
+    #include <string>
+    #include <cstring>
+    using namespace std;
+//fim das bibliotecas
 
-using namespace std;
 //Construtores:
 Fila_Aterrissagem_P3::Fila_Aterrissagem_P3()
 {
     Aviao* ponta = new Aviao(0, 0, " ");
     dianteira = ponta;
-    tamanho=0;
+    tamanho=1;
 }
 
 Fila_Aterrissagem_P3::Fila_Aterrissagem_P3(int num_passageiros, int minutos_de_combustivel, string compania)//"/Declarando método da classe nó que cria a frente da carrinho com um objeto do tipo Node na frente e um objeto na parte de trás que também tem o mesmo valor e da frente.
 {
     Aviao* ponta = new Aviao(num_passageiros, minutos_de_combustivel, compania);
     dianteira = ponta;
-    tamanho=1;
+    tamanho=2;
 }
 
 int Fila_Aterrissagem_P3::Pegar_tamanho() 
@@ -30,7 +32,7 @@ int Fila_Aterrissagem_P3::Pegar_tamanho()
   return this->tamanho;
 }
 
-int Fila_Aterrissagem_P3::Declarar_tamanho(int tamanho) 
+int Fila_Aterrissagem_P3::Inserir_tamanho(int tamanho) 
 {
   return this->tamanho = tamanho;
 }
@@ -40,20 +42,21 @@ int Fila_Aterrissagem_P3::Declarar_tamanho(int tamanho)
 //Outros Métodos:
 bool Fila_Aterrissagem_P3::vazia() //verifica se a carrinho está vazia
 {
-    return (ponta == NULL);
+    return (ponta == nullptr);
 }
 
 
 
 //Insere elemento no final do carrinho:
 void Fila_Aterrissagem_P3::inserir_final(int num_passageiros, int minutos_de_combustivel, string compania) {
+
     Aviao *novo_no = new Aviao(num_passageiros, minutos_de_combustivel, compania);
     
     if (vazia()) {
         ponta = novo_no;
         dianteira = novo_no;
     } else {
-        dianteira->Declarar_prox(novo_no);
+        dianteira->Inserir_proximo(novo_no);
         dianteira = novo_no;
     }
 
@@ -88,7 +91,7 @@ void Fila_Aterrissagem_P3::mostrar_todos()
                 cout<<endl;
 
             }
-            ponteiro = ponteiro->Pegar_prox();
+            ponteiro = ponteiro->Pegar_proximo();
         }
     }
 }
@@ -96,8 +99,11 @@ void Fila_Aterrissagem_P3::mostrar_todos()
 
 void Fila_Aterrissagem_P3::Buscar_Aviao(int ID)
 {
-    Aviao* ponteiro = ponta;
+    //inicio das variaveis
+    Aviao *ponteiro = new Aviao();
+    ponteiro = ponta;
     int token_de_busca = 0;
+    //fim das variaveis
 
     if(vazia())
     {
@@ -116,7 +122,7 @@ void Fila_Aterrissagem_P3::Buscar_Aviao(int ID)
             }
             else
             {
-                ponteiro = ponteiro->Pegar_prox();
+                ponteiro = ponteiro->Pegar_proximo();
                 token_de_busca = 0;
             }
         }
@@ -134,32 +140,39 @@ void Fila_Aterrissagem_P3::Buscar_Aviao(int ID)
 
 int Fila_Aterrissagem_P3::size()
 {
-  if(vazia())
-  {
-    return 0;
-  }
-  Aviao* p = ponta;
-  int tamanho = 0;
+    if(vazia())
+    {
+        return 0;
+    }
+    //inicio das variaveis locais
+    Aviao* ponteiro = ponta;
+    int tamanho = 0;
+    //fim das variaveis locais
 
-  while(p)
-  {
-    p = p->Pegar_prox();
-    tamanho+=1;
-  }
-  return tamanho;
+    while(ponteiro)
+    {
+        tamanho++;
+        ponteiro = ponteiro->Pegar_proximo();
+    }
+    return tamanho;
 }
 
 void Fila_Aterrissagem_P3::remover()
 {
-  if(!vazia())
-  {
-    ponta = ponta->Pegar_prox();
-    return;
-  }
+    Aviao *ponteiro = ponta; 
 
-  else
-  {
-    cout<<"Esta fila está vazia"<<endl<<endl;
-  }
+    if(!vazia())
+    {
+        ponta = ponta->Pegar_proximo();
+        free(ponteiro);
+        return;
+    }
+
+    else
+    {
+        cout<<"Esta fila está vazia"<<endl<<endl;
+    }
 
 }
+
+//fim do código

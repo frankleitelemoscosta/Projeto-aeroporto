@@ -4,10 +4,12 @@
 
 // compile com: g++ Fila_Decolagem.hpp Fila_Decolagem.cpp Fila_jur.hpp Fila_jur.cpp Aviao.hpp Aviao.cpp Pessoa_jur.hpp Pessoa_jur.cpp Pessoa.hpp Pessoa.hpp main.cpp -o ex
 
-#include "Fila_Decolagem.hpp"
-#include <iostream>
-#include <string>
-#include <cstring>
+//inicio das bibliotecas
+    #include "Fila_Decolagem.hpp"
+    #include <iostream>
+    #include <string>
+    #include <cstring>
+//fim das bibliotecas
 
 using namespace std;
 //Construtores:
@@ -56,13 +58,13 @@ void Fila_Decolagem::inserir_final(int num_passageiros, int minutos_de_combustiv
         //em sua frente +1:
     
     espera_estimada_minutos = this->size()+1;
-    novo_no->Declarar_espera_para_decolagem(espera_estimada_minutos);
+    novo_no->Inserir_espera_para_decolagem(espera_estimada_minutos);
 
     while(erro==1)
     {
         cout<<"Insira aqui um ID par para o seu avião:";
         cin>>ID;
-        novo_no->Declarar_ID(ID);
+        novo_no->Inserir_ID(ID);
         
         if(ID%2!=0)
             erro=1;
@@ -80,7 +82,7 @@ void Fila_Decolagem::inserir_final(int num_passageiros, int minutos_de_combustiv
         ponta = novo_no;
         dianteira = novo_no;
     } else {
-        dianteira->Declarar_prox(novo_no);
+        dianteira->Inserir_proximo(novo_no);
         dianteira = novo_no;
     }
 
@@ -115,7 +117,7 @@ void Fila_Decolagem::mostrar_todos()
                 cout<<endl;
 
             }
-            ponteiro = ponteiro->Pegar_prox();
+            ponteiro = ponteiro->Pegar_proximo();
         }
     }
 }
@@ -143,7 +145,7 @@ void Fila_Decolagem::Buscar_Aviao(int ID)
             }
             else
             {
-                ponteiro = ponteiro->Pegar_prox();
+                ponteiro = ponteiro->Pegar_proximo();
                 token_de_busca = 0;
             }
         }
@@ -161,32 +163,45 @@ void Fila_Decolagem::Buscar_Aviao(int ID)
 
 int Fila_Decolagem::size()
 {
-  if(vazia())
-  {
-    return 0;
-  }
-  Aviao* p = ponta;
-  int tamanho = 0;
+  
+    if(vazia())
+    {
+        return 0;
+    }
+    
+    //inicio das variaveis locais
+    Aviao *ponteiro =  ponta;
+    int tamanho = 0;
+    //fim das variaveis locais
 
-  while(p)
-  {
-    p = p->Pegar_prox();
-    tamanho+=1;
-  }
-  return tamanho;
+    while(ponteiro)
+    {
+        ponteiro = ponteiro->Pegar_proximo();
+        tamanho+=1;
+    }
+
+    return tamanho;
+
 }
 
 void Fila_Decolagem::remover()
 {
-  if(!vazia())
-  {
-    ponta = ponta->Pegar_prox();
-    return;
-  }
 
-  else
-  {
-    cout<<"Esta fila está vazia"<<endl<<endl;
-  }
+    Aviao *ponteiro = new Aviao();
+    ponteiro = ponta;
+
+    if(!vazia())
+    {
+        ponta = ponta->Pegar_proximo();
+        free(ponteiro);
+        return;
+    }
+
+    else
+    {
+        cout<<"Esta fila está vazia"<<endl<<endl;
+    }
 
 }
+
+//fim do codigo
