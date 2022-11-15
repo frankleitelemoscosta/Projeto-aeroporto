@@ -12,13 +12,14 @@ int Pista::tamanho_filas()
 {
 
     //inicio das variaveis locais
-    int menor;
+        int menor;
     //fim das variaveis locais
       
         if(fila_1.size()<fila_2.size())
         {
             menor = fila_1.size();
-        }else
+        }
+        else
         {
             menor = fila_2.size();
         }
@@ -27,21 +28,21 @@ int Pista::tamanho_filas()
     return menor;//se trata de um número, pois é necessário ser feito uma comparação em outro arquivo que no caso é o arquivo Aeroporto
 }
 
-void Pista::inserir_na_aterrissagem(int id)
+void Pista::inserir_na_aterrissagem(int id,int minutos_combustivel)
 {
     if(fila_1.vazia() && fila_2.vazia())//para a primeira inserção
     {
-        fila_1.inserir_na_fila(id);
+        fila_1.inserir_na_fila(id,minutos_combustivel);
     }
     else if (!fila_1.vazia())//para o programa saber como deixar as filas com tamanhos parecidos
     {
         if(fila_1.size()<fila_2.size())
         {
-            fila_1.inserir_na_fila(id);
+            fila_1.inserir_na_fila(id,minutos_combustivel);
         }
         else
         {
-            fila_2.inserir_na_fila(id);
+            fila_2.inserir_na_fila(id,minutos_combustivel);
         }
     }
     
@@ -60,7 +61,7 @@ void Pista::remover_da_aterrissagem()
 
 void Pista::mostrar_filas()
 {
-    fila_1.mostrar_todos();
+    fila_1.mostrar_todos();//filas de aterrissagem
     fila_2.mostrar_todos();
 }
 

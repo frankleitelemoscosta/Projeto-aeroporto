@@ -7,14 +7,14 @@ Aeroporto::Aeroporto()//construtor
 
 }
 
-void Aeroporto::inserir_aviao_na_aterrissagem(int id)
+void Aeroporto::inserir_aviao_na_aterrissagem(int id,int minutos_combustivel)
 {
     if(pista_1.tamanho_filas()<pista_2.tamanho_filas())//para inserir na menor fila visando deixa-las com o mesmo tamanho
     {
-        pista_1.inserir_na_aterrissagem(id);
+        pista_1.inserir_na_aterrissagem(id,minutos_combustivel);
     }else
     {
-        pista_2.inserir_na_aterrissagem(id);
+        pista_2.inserir_na_aterrissagem(id,minutos_combustivel);
     }
 }
 
@@ -28,6 +28,9 @@ void Aeroporto::remover_da_fila_aterrissagem()
     if(pista_1.tamanho_filas()>pista_2.tamanho_filas())
     {
         pista_1.remover_da_aterrissagem();
+    }
+    else{
+        pista_2.remover_da_aterrissagem();
     }
 }
 

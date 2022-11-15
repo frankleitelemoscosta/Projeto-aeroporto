@@ -29,7 +29,7 @@ bool Fila_Aerea::vazia() //verifica se a carrinho está vazia
 
 
 //Insere elemento no final do carrinho:
-void Fila_Aerea::inserir_na_fila(int id) {
+void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel) {
 
     //incio das variaveis locais
         Aviao *novo_no = new Aviao();
@@ -51,6 +51,7 @@ void Fila_Aerea::inserir_na_fila(int id) {
     }
 
     dianteira->Inserir_ID(id);
+    dianteira->Inserir_minutos_de_combustivel(minutos_combustivel);
 
     cout << endl;
     cout << endl;
@@ -158,6 +159,16 @@ void Fila_Aerea::remover()
         Aviao *ponteiro = new Aviao();
         ponteiro = ponta;
     //fim das variaveis locais
+
+    //para mostrar ao usuário quem esta saindo da pista de aterrissagem
+        cout<<endl;
+        cout<<endl;
+        cout<<"|*******INFORMAÇÕES DO AVIÃO QUE ESTA SAINDO DA FILA DE ATERRISSAGEM********|"<<endl;
+        cout<<" Número de identificação do avião que saiu: "<<ponteiro->Pegar_ID()<<endl;    
+        cout<<"|***************************************************************************|"<<endl;
+        cout<<endl;
+        cout<<endl;
+    //fim desse procedimento
 
     if(!vazia())
     {

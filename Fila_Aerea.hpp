@@ -20,7 +20,7 @@ class Fila_Aerea
         Fila_Aerea();
 
         bool vazia();
-        void inserir_na_fila(int id);
+        void inserir_na_fila(int id,int minutos_combustivel);
         void mostrar_todos();
         void Buscar_Aviao(int ID);
         int size();

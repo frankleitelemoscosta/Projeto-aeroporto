@@ -19,7 +19,7 @@ class Aeroporto
 
     Aeroporto();//construtor
 
-    void inserir_aviao_na_aterrissagem(int id);
+    void inserir_aviao_na_aterrissagem(int id,int minutos_combustivel);
 
     void inserir_aviao_na_decolagem();
 
