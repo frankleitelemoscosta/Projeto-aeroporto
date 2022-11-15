@@ -164,7 +164,8 @@ void Fila_Aerea::remover()
         cout<<endl;
         cout<<endl;
         cout<<"|*******INFORMAÇÕES DO AVIÃO QUE ESTA SAINDO DA FILA DE ATERRISSAGEM********|"<<endl;
-        cout<<" Número de identificação do avião que saiu: "<<ponteiro->Pegar_ID()<<endl;    
+        cout<<" Número de identificação do avião que saiu: "<<ponteiro->Pegar_ID()<<endl;  
+        cout<<" Tempo de combustível que ainda lhe restava em minutos:"<<ponteiro->Pegar_minutos_de_combustivel()<<endl;  
         cout<<"|***************************************************************************|"<<endl;
         cout<<endl;
         cout<<endl;
