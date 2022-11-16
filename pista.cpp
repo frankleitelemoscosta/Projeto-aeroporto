@@ -28,21 +28,21 @@ int Pista::tamanho_filas()
     return menor;//se trata de um número, pois é necessário ser feito uma comparação em outro arquivo que no caso é o arquivo Aeroporto
 }
 
-void Pista::inserir_na_aterrissagem(int id,int minutos_combustivel)
+void Pista::inserir_na_aterrissagem(int id, int minutos_combustivel, int numero_de_passageiros)
 {
     if(fila_1.vazia() && fila_2.vazia())//para a primeira inserção
     {
-        fila_1.inserir_na_fila(id,minutos_combustivel);
+        fila_1.inserir_na_fila(id,minutos_combustivel, numero_de_passageiros);
     }
     else if (!fila_1.vazia())//para o programa saber como deixar as filas com tamanhos parecidos
     {
         if(fila_1.size()<fila_2.size())
         {
-            fila_1.inserir_na_fila(id,minutos_combustivel);
+            fila_1.inserir_na_fila(id,minutos_combustivel, numero_de_passageiros);
         }
         else
         {
-            fila_2.inserir_na_fila(id,minutos_combustivel);
+            fila_2.inserir_na_fila(id,minutos_combustivel, numero_de_passageiros);
         }
     }
     
