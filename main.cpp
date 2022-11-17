@@ -2,6 +2,7 @@
     #include <string>
     #include <cstring>
     #include <iostream>
+    #include <ctime>
     #include"Aeroporto.hpp"
     using namespace std;
 //fim das inclusões de bibliotecas
@@ -13,13 +14,20 @@ int main()
         Aeroporto aeroporto;
         int id, minutos_combustivel;
         int contador_minutos = 0;
-        int avioes_chegando = 0;
-        int numero_de_passageiros = 0; 
-        
+        int numero_de_passageiros = 0;
+        int entrada_aletoria_avioes_chegando = 0;
+        int entrada_aletoria_minutos_combustivel = 0;
+        int entrada_aletoria_numero_de_passageiros = 0;
+
+
     //fim das variaveis locais
 
     //inicio do menu
     do{
+
+        //inicio das sementes que representam variáveis locais aletórias:
+
+        //fim das variaveis aleatórias
 
         cout<<"|-------------MENU--------------|"<<endl;
         cout<<"|1- Inserir um avião em uma fila|"<<endl;
@@ -33,26 +41,38 @@ int main()
                 cout<<"Saindo..."<<endl;
             break;
 
-            case 1:
-                cout<<"Insira aqui quantos aviões devem serão inseridos:"<<endl;
-                cin>>avioes_chegando;
+            case 1:{
+                
+                unsigned semente_avioes_chegando = time(0);
+                srand(semente_avioes_chegando);
+                entrada_aletoria_avioes_chegando = 1+rand()%3;
 
+                cout<<"Estão chegando"<<entrada_aletoria_avioes_chegando<<" aviões";
 
-                for(int contador_avioes_inseridos=0;contador_avioes_inseridos<avioes_chegando;contador_avioes_inseridos++)
+                for(int contador_avioes_inseridos=0;contador_avioes_inseridos<entrada_aletoria_avioes_chegando;contador_avioes_inseridos++)
                 {
-                    cout<<"Insira um id: "<<endl;
+
+                    unsigned semente_minutos_combustivel = time(0);
+                    srand(semente_minutos_combustivel);
+                    entrada_aletoria_minutos_combustivel = 1+rand()%15;
+
+                    unsigned semente_numero_de_passageiros = time(0);
+                    srand(semente_numero_de_passageiros);
+                    entrada_aletoria_numero_de_passageiros = 1+rand()%853;
+
+                    cout<<"O "<<contador_avioes_inseridos<<"º avião tem:"<<endl;
+                    cout<<entrada_aletoria_minutos_combustivel<<"minutos de combustível"<<endl;
+                    cout<<entrada_aletoria_numero_de_passageiros<<" passageiros"<<endl;
+                    
+                    cout<<"Agora insira um id: "<<endl;
                     cin>>id;
 
-                    cout<<"Inserir o tempo de combustível "<<endl;
-                    cin>>minutos_combustivel;
+                    aeroporto.inserir_aviao_na_aterrissagem(id,entrada_aletoria_minutos_combustivel,entrada_aletoria_numero_de_passageiros);
 
-                    cout<<"Inserir o número de passageiros"<<endl;
-                    cin>>numero_de_passageiros;
-
-
-                    aeroporto.inserir_aviao_na_aterrissagem(id,minutos_combustivel,numero_de_passageiros);
+                    cout<<endl<<endl;
                 }
             break;
+            }
 
             case 2:
                 aeroporto.impressao_filas();
