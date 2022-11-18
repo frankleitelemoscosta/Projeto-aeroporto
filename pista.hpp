@@ -18,7 +18,7 @@ class Pista
 
     Pista();//construtor
 
-    void inserir_na_aterrissagem(int id,int minutos_combustivel, int numero_de_passageiros, string nome_companhia);
+    void inserir_na_aterrissagem(int id,int minutos_combustivel, int numero_de_passageiros, string nome_companhia,int id_fila1, int id_fila2);
 
     void remover_da_aterrissagem();
 

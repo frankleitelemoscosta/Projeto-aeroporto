@@ -97,6 +97,15 @@ void Aviao::Iniciando_tempo_aterrissagem()//esse método foi criado pois o const
     this->minutos_ate_aterrissar = 0;
 }
 
+void Aviao::Inserir_identificador_fila(int id_fila)
+{
+    this->identificador_fila = id_fila;//a ideia é filtrar o calculo onde ele é feito na fila aerea, utilizando ifs
+}
+
+int Aviao::Pegar_fila_aviao()
+{
+    return this->identificador_fila;//traz a qual fila o avião está
+}
 
 //fim dos gets e sets
 

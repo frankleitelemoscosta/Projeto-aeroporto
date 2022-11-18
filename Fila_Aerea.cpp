@@ -33,7 +33,7 @@ bool Fila_Aerea::vazia() //verifica se a carrinho está vazia
 
 
 //Insere elemento no final do carrinho:
-void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_passageiros,string nome_companhia) {
+void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_passageiros,string nome_companhia,int id_fila) {
 
     //incio das variaveis locais
         Aviao *novo_no = new Aviao();
@@ -59,6 +59,7 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
     dianteira->Inserir_num_passageiros(numero_de_passageiros);
     dianteira->Inserir_companhia(nome_companhia);
     dianteira->Iniciando_tempo_aterrissagem();
+    dianteira->Inserir_identificador_fila(id_fila);
 
     cout << endl;
     cout << endl;

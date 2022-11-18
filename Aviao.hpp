@@ -21,6 +21,7 @@ class Aviao
         string companhia;
         int espera_para_decolagem;
         int minutos_ate_aterrissar;//armazena quanto tempo um avião levou para aterrissar
+        int identificador_fila;
 
     //fim dos atributos
     public:
@@ -50,6 +51,9 @@ class Aviao
         void Diminuir_tempo_aterrissagem();
         void Iniciando_tempo_aterrissagem();
         int Pegar_tempo_aterrissagem();
+
+        void Inserir_identificador_fila(int id_fila);
+        int Pegar_fila_aviao();
         //fim dos métodos
 };
 
