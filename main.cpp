@@ -18,6 +18,7 @@ int main()
         int entrada_aletoria_avioes_chegando = 0;
         int entrada_aletoria_minutos_combustivel = 0;
         int entrada_aletoria_numero_de_passageiros = 0;
+        string nome_companhia;
 
 
     //fim das variaveis locais
@@ -67,11 +68,20 @@ int main()
                     cout<<"Agora insira um id: "<<endl;
                     cin>>id;
 
-                    aeroporto.inserir_aviao_na_aterrissagem(id,entrada_aletoria_minutos_combustivel,entrada_aletoria_numero_de_passageiros);
+                    cin.ignore();
+
+                    cout<<"insira o nome da Companhia: "<<endl;
+                    getline(cin,nome_companhia);
+
+                    aeroporto.inserir_aviao_na_aterrissagem(id,entrada_aletoria_minutos_combustivel,entrada_aletoria_numero_de_passageiros,nome_companhia);
+
+                    contador_minutos++;
 
                     cout<<endl<<endl;
                 }
+
             break;
+
             }
 
             case 2:
@@ -83,10 +93,8 @@ int main()
             break;
         }
 
-        contador_minutos++;
-
         //vai imprimir periodicamente dados dos avioẽs
-        if(contador_minutos==3)
+        if(contador_minutos>=3)
         {
             aeroporto.remover_da_fila_aterrissagem();
             aeroporto.impressao_filas();

@@ -18,14 +18,14 @@ class Aviao
         int num_passageiros;
         int minutos_de_combustivel;
         int ID;
-        string compania;
+        string companhia;
         int espera_para_decolagem;
 
     //fim dos atributos
     public:
         //Construtores de Avião:
         Aviao();
-        Aviao(int num_passageiros, int minutos_de_combustivel, string compania);
+        Aviao(int num_passageiros, int minutos_de_combustivel, string companhia);
 
         //Gets e Sets de Avião:
         void Inserir_proximo(Aviao *ponteiro);
@@ -40,8 +40,8 @@ class Aviao
         int Inserir_ID(int ID);
         int Pegar_ID();
 
-        string Inserir_compania(string compania);
-        string Pegar_compania();
+        string Inserir_companhia(string compania);
+        string Pegar_companhia();
 
         int Inserir_espera_para_decolagem(int espera_para_decolagem);
         int Pegar_espera_para_decolagem();

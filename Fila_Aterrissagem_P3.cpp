@@ -85,7 +85,7 @@ void Fila_Aterrissagem_P3::mostrar_todos()
                 //Mostrar todos os atributos:
                 cout<<"Número de passageiros: "<<ponteiro->Pegar_num_passageiros()<<endl;
                 cout<<"Minutos de Combustível: "<<ponteiro->Pegar_minutos_de_combustivel()<<endl;
-                cout<<"Compania: "<<ponteiro->Pegar_compania()<<endl;
+                cout<<"Compania: "<<ponteiro->Pegar_companhia()<<endl;
                 cout<<"ID: "<<ponteiro->Pegar_ID()<<endl;
                 cout<<endl;
                 cout<<endl;

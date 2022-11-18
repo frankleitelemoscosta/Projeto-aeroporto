@@ -6,13 +6,13 @@ Aviao::Aviao(){//construtor vazio
   
 }
 
-Aviao::Aviao(int num_passageiros, int minutos_de_combustivel, string compania)
+Aviao::Aviao(int num_passageiros, int minutos_de_combustivel, string companhia)
 {
     this-> proximo = nullptr;
     this->num_passageiros = num_passageiros;
     this->minutos_de_combustivel = minutos_de_combustivel;
     this->ID = 0;
-    this->compania = compania; 
+    this->companhia = companhia; 
     this->espera_para_decolagem = -1; 
 }
 
@@ -61,14 +61,14 @@ int Aviao::Inserir_ID(int ID)
   return this->ID = ID;
 }
 
-string Aviao::Pegar_compania() 
+string Aviao::Pegar_companhia() 
 {
-  return this->compania;
+  return this->companhia;
 }
 
-string Aviao::Inserir_compania(string compania) 
+string Aviao::Inserir_companhia(string companhia) 
 {
-  return this->compania = compania;
+  return this->companhia = companhia;
 }
 
 int Aviao::Pegar_espera_para_decolagem() 
