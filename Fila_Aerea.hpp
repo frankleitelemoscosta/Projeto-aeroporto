@@ -16,6 +16,8 @@ class Fila_Aerea
         Aviao *ponta;
         Aviao *dianteira;
         int tamanho;
+        float Dividendo;
+        float contador_aterrissagem;
 
 //fim dos atributos
     public:

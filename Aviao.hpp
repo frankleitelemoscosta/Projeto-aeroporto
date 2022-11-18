@@ -20,6 +20,7 @@ class Aviao
         int ID;
         string companhia;
         int espera_para_decolagem;
+        int minutos_ate_aterrissar;//armazena quanto tempo um avião levou para aterrissar
 
     //fim dos atributos
     public:
@@ -45,6 +46,10 @@ class Aviao
 
         int Inserir_espera_para_decolagem(int espera_para_decolagem);
         int Pegar_espera_para_decolagem();
+
+        void Diminuir_tempo_aterrissagem();
+        void Iniciando_tempo_aterrissagem();
+        int Pegar_tempo_aterrissagem();
         //fim dos métodos
 };
 

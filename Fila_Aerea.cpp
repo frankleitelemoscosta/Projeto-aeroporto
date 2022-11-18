@@ -4,11 +4,13 @@
 
 // compile com: g++ Fila_Aerea.hpp Fila_Aerea.cpp Fila_jur.hpp Fila_jur.cpp Aviao.hpp Aviao.cpp Pessoa_jur.hpp Pessoa_jur.cpp Pessoa.hpp Pessoa.hpp main.cpp -o ex
 
+
 //inicio das bibliotecas
     #include "Fila_Aerea.hpp"
     #include <iostream>
     #include <string>
     #include <cstring>
+    #include<iomanip>
     using namespace std;
 //fim das bibliotecas
 
@@ -17,6 +19,8 @@ Fila_Aerea::Fila_Aerea()
 {
    ponta = nullptr;
    dianteira = nullptr;
+   this->contador_aterrissagem = 0;//serve para inicializar
+   this->Dividendo = 0;//serve para inicializar
 }
 
 
@@ -54,6 +58,7 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
     dianteira->Inserir_minutos_de_combustivel(minutos_combustivel);
     dianteira->Inserir_num_passageiros(numero_de_passageiros);
     dianteira->Inserir_companhia(nome_companhia);
+    dianteira->Iniciando_tempo_aterrissagem();
 
     cout << endl;
     cout << endl;
@@ -160,12 +165,36 @@ void Fila_Aerea::remover()
     //inicio das variaveis locais
         Aviao *ponteiro = new Aviao();
         ponteiro = ponta;
+        float tempo_medio;
     //fim das variaveis locais
+
+
+    //Esse procedimento será responsável por reduzir o tempo de todos os aviões
+        while(ponteiro)
+        {
+            ponteiro->Diminuir_tempo_aterrissagem();
+
+            ponteiro = ponteiro->Pegar_proximo();
+        }
+    //fim deste procedimento
+    ponteiro = ponta;
 
     if(!vazia())
     {
-        ponta = ponta->Pegar_proximo();
-        free(ponteiro);//deletando da memoria o nó anterior
+        //procedimento para calcular tempo medio de aterrissagem
+            this->contador_aterrissagem = this->contador_aterrissagem + 1;
+            this->Dividendo = this->Dividendo + ponta->Pegar_tempo_aterrissagem();
+            tempo_medio = this->Dividendo/this->contador_aterrissagem;
+            cout<<setprecision(2)<<"Tempo médio de aterrissagem: "<<tempo_medio<<" minutos"<<endl;
+            cout<<endl;
+            cout<<endl;
+        //fim do procedimento
+
+
+        //daqui em diante se faz a remoção
+            ponta = ponta->Pegar_proximo();
+            free(ponteiro);//deletando da memoria o nó anterior
+        //fim da remoção
         return;
     }
     else

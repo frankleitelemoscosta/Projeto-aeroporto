@@ -57,7 +57,7 @@ int main()
                     srand(semente_minutos_combustivel);
                     entrada_aletoria_minutos_combustivel = 1+rand()%15;
 
-                    unsigned int semente_numero_de_passageiros = time(0);
+                    unsigned semente_numero_de_passageiros = time(0);
                     srand(semente_numero_de_passageiros);
                     entrada_aletoria_numero_de_passageiros = 1+rand()%853;
 
@@ -75,7 +75,7 @@ int main()
 
                     aeroporto.inserir_aviao_na_aterrissagem(id,entrada_aletoria_minutos_combustivel,entrada_aletoria_numero_de_passageiros,nome_companhia);
 
-                    contador_minutos++;
+                    contador_minutos++;//para que seja possível saber quando se passou um minuto no programa.
 
                     cout<<endl<<endl;
                 }

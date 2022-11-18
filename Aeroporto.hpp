@@ -29,6 +29,8 @@ class Aeroporto
 
     void impressao_filas();
 
+    void diminuir_tempo_aterrissagem();
+
 //fim dos métodos
 };
 

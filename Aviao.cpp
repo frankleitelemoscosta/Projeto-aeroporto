@@ -81,6 +81,21 @@ int Aviao::Inserir_espera_para_decolagem(int espera_para_decolagem)
   return this->espera_para_decolagem = espera_para_decolagem;
 }
 
+int Aviao::Pegar_tempo_aterrissagem()
+{
+    return this->minutos_ate_aterrissar;
+}
+
+void Aviao::Diminuir_tempo_aterrissagem()
+{
+    this->minutos_de_combustivel = this->minutos_de_combustivel - 1;
+    this->minutos_ate_aterrissar = this->minutos_ate_aterrissar + 1;
+}
+
+void Aviao::Iniciando_tempo_aterrissagem()//esse método foi criado pois o construtor só é chamado uma vez, e no caso desse programa é necessário que isso ocorra toda vez que um nó for criado
+{
+    this->minutos_ate_aterrissar = 0;
+}
 
 
 //fim dos gets e sets
