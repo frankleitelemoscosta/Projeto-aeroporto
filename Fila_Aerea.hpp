@@ -12,12 +12,15 @@
 class Fila_Aerea
 {
     private:
+
         Aviao *ponta;
         Aviao *dianteira;
         int tamanho;
+
 //fim dos atributos
     public:
-        Fila_Aerea();
+
+        Fila_Aerea();//construtor
 
         bool vazia();
         void inserir_na_fila(int id,int minutos_combustivel, int numero_de_passageiros);

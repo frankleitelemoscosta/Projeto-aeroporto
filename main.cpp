@@ -31,7 +31,7 @@ int main()
 
         cout<<"|-------------MENU--------------|"<<endl;
         cout<<"|1- Inserir um avião em uma fila|"<<endl;
-        cout<<"|2- Mostrar filas|"<<endl;
+        cout<<"|2- Mostrar filas               |"<<endl;
         cout<<"|0- Sair do programa            |"<<endl;
         cin>>op;
 
@@ -47,21 +47,21 @@ int main()
                 srand(semente_avioes_chegando);
                 entrada_aletoria_avioes_chegando = 1+rand()%3;
 
-                cout<<"Estão chegando"<<entrada_aletoria_avioes_chegando<<" aviões";
+                cout<<"Estão chegando: "<< entrada_aletoria_avioes_chegando <<" aviões"<<endl;
 
-                for(int contador_avioes_inseridos=0;contador_avioes_inseridos<entrada_aletoria_avioes_chegando;contador_avioes_inseridos++)
+                for(int contador_avioes_inseridos = 0; contador_avioes_inseridos < entrada_aletoria_avioes_chegando ; contador_avioes_inseridos++)
                 {
 
                     unsigned semente_minutos_combustivel = time(0);
                     srand(semente_minutos_combustivel);
                     entrada_aletoria_minutos_combustivel = 1+rand()%15;
 
-                    unsigned semente_numero_de_passageiros = time(0);
+                    unsigned int semente_numero_de_passageiros = time(0);
                     srand(semente_numero_de_passageiros);
                     entrada_aletoria_numero_de_passageiros = 1+rand()%853;
 
-                    cout<<"O "<<contador_avioes_inseridos<<"º avião tem:"<<endl;
-                    cout<<entrada_aletoria_minutos_combustivel<<"minutos de combustível"<<endl;
+                    cout<<"O "<<contador_avioes_inseridos+1<<"º avião tem:"<<endl;
+                    cout<<entrada_aletoria_minutos_combustivel<<" minutos de combustível"<<endl;
                     cout<<entrada_aletoria_numero_de_passageiros<<" passageiros"<<endl;
                     
                     cout<<"Agora insira um id: "<<endl;
@@ -96,8 +96,6 @@ int main()
     }while(op!=0);
     //fim do menu
 
-    string end = "\n";
-    cout<<end;
     return 0;
 }
 

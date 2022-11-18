@@ -8,12 +8,12 @@ Aviao::Aviao(){//construtor vazio
 
 Aviao::Aviao(int num_passageiros, int minutos_de_combustivel, string compania)
 {
-  this-> proximo = nullptr;
-  this->num_passageiros = num_passageiros;
-  this->minutos_de_combustivel = minutos_de_combustivel;
-  this->ID = 0;
-  this->compania = compania; 
-  this->espera_para_decolagem = -1; 
+    this-> proximo = nullptr;
+    this->num_passageiros = num_passageiros;
+    this->minutos_de_combustivel = minutos_de_combustivel;
+    this->ID = 0;
+    this->compania = compania; 
+    this->espera_para_decolagem = -1; 
 }
 
 //para alocação de memoria:
