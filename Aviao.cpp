@@ -14,6 +14,7 @@ Aviao::Aviao(int num_passageiros, int minutos_de_combustivel, string companhia)
     this->ID = 0;
     this->companhia = companhia; 
     this->espera_para_decolagem = -1; 
+
 }
 
 //para alocação de memoria:

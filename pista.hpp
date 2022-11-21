@@ -25,7 +25,11 @@ class Pista
     int tamanho_filas();
 
     void mostrar_filas();
+    
+    void tempo_medio_filas(int fila,int fila2);
 
+    void diminuir_tempo();
+ 
 //fim dos métodos
 };
 

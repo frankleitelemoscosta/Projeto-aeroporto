@@ -96,6 +96,8 @@ int main()
         //vai imprimir periodicamente dados dos avioẽs
         if(contador_minutos>=3)
         {
+            aeroporto.diminuindo_tempo();
+            aeroporto.tempo_medio_por_fila();
             aeroporto.remover_da_fila_aterrissagem();
             aeroporto.impressao_filas();
             contador_minutos = 0;

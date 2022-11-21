@@ -21,7 +21,7 @@ class Aviao
         string companhia;
         int espera_para_decolagem;
         int minutos_ate_aterrissar;//armazena quanto tempo um avião levou para aterrissar
-        int identificador_fila;
+        int identificador_fila;//com essa variavel se torna possível distinguir as filas
 
     //fim dos atributos
     public:

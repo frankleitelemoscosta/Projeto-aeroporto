@@ -41,7 +41,8 @@ void Aeroporto::remover_da_fila_aterrissagem()
     {
         pista_1.remover_da_aterrissagem();
     }
-    else{
+    else
+    {
         pista_2.remover_da_aterrissagem();
     }
 }
@@ -56,6 +57,18 @@ void Aeroporto::impressao_filas()
     //aqui o que ocorre é que o programa acessa as duas pistas com suas duas filas para ler as filas por completo
     pista_1.mostrar_filas();
     pista_2.mostrar_filas();
+}
+
+void Aeroporto::tempo_medio_por_fila()
+{
+    pista_1.tempo_medio_filas(1,2);
+    pista_2.tempo_medio_filas(3,4);
+}
+
+void Aeroporto::diminuindo_tempo()
+{
+    pista_1.diminuir_tempo();
+    pista_2.diminuir_tempo();
 }
 
 //fim do código

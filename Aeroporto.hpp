@@ -31,6 +31,10 @@ class Aeroporto
 
     void diminuir_tempo_aterrissagem();
 
+    void tempo_medio_por_fila();
+
+    void diminuindo_tempo();
+
 //fim dos métodos
 };
 

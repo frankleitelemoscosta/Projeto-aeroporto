@@ -17,10 +17,17 @@
 //Construtores:
 Fila_Aerea::Fila_Aerea()
 {
-   ponta = nullptr;
-   dianteira = nullptr;
-   this->contador_aterrissagem = 0;//serve para inicializar
-   this->Dividendo = 0;//serve para inicializar
+    ponta = nullptr;
+    dianteira = nullptr;
+    this->contador_aterrissagem_fila1 = 1;//serve para inicializar
+    this->Dividendo_fila1 = 0;//serve para inicializar
+    this->contador_aterrissagem_fila2 = 1;
+    this->Dividendo_fila2 = 0;
+    this->contador_aterrissagem_fila3 = 1;
+    this->Dividendo_fila3 = 0;
+    this->contador_aterrissagem_fila4 = 1;
+    this->Dividendo_fila4 = 0;
+
 }
 
 
@@ -37,7 +44,7 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
 
     //incio das variaveis locais
         Aviao *novo_no = new Aviao();
-        int ID,erro=1;
+        int ID,erro = 1;
     //fim das variaveis locais
 
     if (vazia()) {
@@ -88,6 +95,8 @@ void Fila_Aerea::mostrar_todos()
             cout<<"Minutos de Combustível: "<<ponteiro->Pegar_minutos_de_combustivel()<<endl;
             cout<<"Compania: "<<ponteiro->Pegar_companhia()<<endl;
             cout<<"ID: "<<ponteiro->Pegar_ID()<<endl;
+            cout<<"Tempo de espera: "<<ponteiro->Pegar_tempo_aterrissagem()<<endl;
+            cout<<"Fila a qual pertence: "<<ponteiro->Pegar_fila_aviao()<<endl;
             cout<<endl;
             cout<<endl;
 
@@ -166,31 +175,30 @@ void Fila_Aerea::remover()
     //inicio das variaveis locais
         Aviao *ponteiro = new Aviao();
         ponteiro = ponta;
-        float tempo_medio;
     //fim das variaveis locais
 
 
-    //Esse procedimento será responsável por reduzir o tempo de todos os aviões
-        while(ponteiro)
-        {
-            ponteiro->Diminuir_tempo_aterrissagem();
+    if(ponta->Pegar_fila_aviao()==1)
+    {
+        this->contador_aterrissagem_fila1 = this->contador_aterrissagem_fila1 + 1;
+    }
+    else if(ponta->Pegar_fila_aviao()==2)
+    {
+        this->contador_aterrissagem_fila2 = this->contador_aterrissagem_fila2 + 1;
+    }
+    else if(ponta->Pegar_fila_aviao()==3)
+    {
+        this->contador_aterrissagem_fila3 = this->contador_aterrissagem_fila3 + 1;
+    }
+    else if(ponta->Pegar_fila_aviao()==4)
+    {
+        this->contador_aterrissagem_fila4 = this->contador_aterrissagem_fila4 + 1;
+    }
 
-            ponteiro = ponteiro->Pegar_proximo();
-        }
-    //fim deste procedimento
-    ponteiro = ponta;
+
 
     if(!vazia())
     {
-        //procedimento para calcular tempo medio de aterrissagem
-            this->contador_aterrissagem = this->contador_aterrissagem + 1;
-            this->Dividendo = this->Dividendo + ponta->Pegar_tempo_aterrissagem();
-            tempo_medio = this->Dividendo/this->contador_aterrissagem;
-            cout<<setprecision(2)<<"Tempo médio de aterrissagem: "<<tempo_medio<<" minutos"<<endl;
-            cout<<endl;
-            cout<<endl;
-        //fim do procedimento
-
 
         //daqui em diante se faz a remoção
             ponta = ponta->Pegar_proximo();
@@ -203,6 +211,103 @@ void Fila_Aerea::remover()
         cout<<"Esta fila está vazia"<<endl<<endl;
     }
 
+}
+
+void Fila_Aerea::tempo_medio_filas(int fila)
+{
+    //inicio das variaveis locais
+        Aviao *ponteiro = new Aviao();
+        ponteiro = ponta;
+        float tempo_medio;
+    //fim das variaveis locais
+
+    if(!vazia())
+    {    
+            while(ponteiro)
+            {
+                if(ponteiro->Pegar_fila_aviao()==1)
+                {
+                    this->Dividendo_fila1 = this->Dividendo_fila1 + ponteiro->Pegar_tempo_aterrissagem();
+                    
+                }
+                else if(ponteiro->Pegar_fila_aviao()==2)
+                {
+                    this->Dividendo_fila2 = this->Dividendo_fila2 + ponteiro->Pegar_tempo_aterrissagem();
+                    
+                }
+                else if(ponteiro->Pegar_fila_aviao()==3)
+                {
+                    this->Dividendo_fila3 = this->Dividendo_fila3 + ponteiro->Pegar_tempo_aterrissagem();
+
+                }
+                else if(ponteiro->Pegar_fila_aviao()==4)
+                {
+                    this->Dividendo_fila4 = this->Dividendo_fila4 + ponteiro->Pegar_tempo_aterrissagem();
+
+                }
+                ponteiro = ponteiro->Pegar_proximo();
+            }
+
+            //procedimento para calcular tempo medio de aterrissagem na fila
+                if(fila==1)
+                {         
+                    tempo_medio = this->Dividendo_fila1/this->contador_aterrissagem_fila1;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem para fila1: "<<tempo_medio<<" minutos"<<endl;
+                    cout<<endl;
+                    cout<<endl;
+                }
+            //fim do procedimento
+
+        
+            //procedimento para calcular tempo medio de aterrissagem na fila dois
+                if(fila==2)
+                {
+                    tempo_medio = this->Dividendo_fila2/this->contador_aterrissagem_fila2;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila2: "<<tempo_medio<<" minutos"<<endl;
+                    cout<<endl;
+                    cout<<endl;
+                }
+            //fim do procedimento
+
+
+            //procedimento para calcular tempo medio de aterrissagem na fila três
+                if(fila==3)
+                {
+                    tempo_medio = this->Dividendo_fila3/this->contador_aterrissagem_fila3;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila 3: "<<tempo_medio<<" minutos"<<endl;
+                    cout<<endl;
+                    cout<<endl;
+                }
+            //fim do procedimento
+        
+            //procedimento para calcular tempo medio de aterrissagem na fila dois
+                if(fila==4)
+                {
+                    tempo_medio = this->Dividendo_fila4/this->contador_aterrissagem_fila4;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila 4: "<<tempo_medio<<" minutos"<<endl;
+                    cout<<endl;
+                    cout<<endl;
+                }
+            //fim do procedimento
+    
+    }
+}
+
+void Fila_Aerea::diminuir_tempo()
+{
+    //inicio das variaveis locais
+        Aviao *ponteiro = new Aviao();
+        ponteiro = ponta;
+    //fim das variaveis locais
+
+    //Esse procedimento será responsável por reduzir o tempo de todos os aviões
+        while(ponteiro)
+        {
+            ponteiro->Diminuir_tempo_aterrissagem();
+
+            ponteiro = ponteiro->Pegar_proximo();
+        }
+    //fim deste procedimento
 }
 
 //fim do código

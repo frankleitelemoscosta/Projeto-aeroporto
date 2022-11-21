@@ -65,4 +65,15 @@ void Pista::mostrar_filas()
     fila_2.mostrar_todos();
 }
 
+void Pista::tempo_medio_filas(int fila, int fila2)
+{
+    fila_1.tempo_medio_filas(fila);
+    fila_2.tempo_medio_filas(fila2);
+}
+
+void Pista::diminuir_tempo()
+{
+    fila_1.diminuir_tempo();
+    fila_2.diminuir_tempo();
+}
 //fim do código

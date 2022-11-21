@@ -16,8 +16,14 @@ class Fila_Aerea
         Aviao *ponta;
         Aviao *dianteira;
         int tamanho;
-        float Dividendo;
-        float contador_aterrissagem;
+        float Dividendo_fila1;
+        float Dividendo_fila2;
+        float Dividendo_fila3;
+        float Dividendo_fila4;
+        float contador_aterrissagem_fila1;
+        float contador_aterrissagem_fila2;
+        float contador_aterrissagem_fila3;
+        float contador_aterrissagem_fila4;
 
 //fim dos atributos
     public:
@@ -30,6 +36,8 @@ class Fila_Aerea
         void Buscar_Aviao(int ID);
         int size();
         void remover();
+        void tempo_medio_filas(int fila);
+        void diminuir_tempo();
 
 //fim dos métodos
 };
