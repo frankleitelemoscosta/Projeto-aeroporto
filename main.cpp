@@ -3,10 +3,31 @@
     #include <cstring>
     #include <iostream>
     #include <ctime>
+    #include <vector>
+    #include <iomanip>
+    #include <random>
     #include"Aeroporto.hpp"
-    using namespace std;
 //fim das inclusões de bibliotecas
 
+using namespace std;
+int numero_aleatorio(int a, int b)
+{
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dis(a, b);
+    return dis(gen);
+}
+
+// using namespace std;
+// int numero_aleatorio(int a, int b)
+// {
+//     srand(time(NULL));
+//     return (rand()%b) + a;
+    
+// }
+
+
+using namespace std;
 int main()
 {
     //inicio das variaveis locais
@@ -18,12 +39,15 @@ int main()
         int entrada_aletoria_avioes_chegando = 0;
         int entrada_aletoria_minutos_combustivel = 0;
         int entrada_aletoria_numero_de_passageiros = 0;
-        string nome_companhia;
+        int entrada_aletoria_nome_da_compania = 0;
+        int entrada_aletoria_do_id = 0;
+        vector <string> companias{"Tam", "Gol", "Azul", "Avianca", "American Airlines"};
 
 
     //fim das variaveis locais
 
     //inicio do menu
+    
     do{
 
         //inicio das sementes que representam variáveis locais aletórias:
@@ -43,37 +67,31 @@ int main()
             break;
 
             case 1:{
-                
-                unsigned semente_avioes_chegando = time(0);
-                srand(semente_avioes_chegando);
-                entrada_aletoria_avioes_chegando = 1+rand()%3;
+
+
+                entrada_aletoria_avioes_chegando = numero_aleatorio(1,3);
 
                 cout<<"Estão chegando: "<< entrada_aletoria_avioes_chegando <<" aviões"<<endl;
 
                 for(int contador_avioes_inseridos = 0; contador_avioes_inseridos < entrada_aletoria_avioes_chegando ; contador_avioes_inseridos++)
                 {
 
-                    unsigned semente_minutos_combustivel = time(0);
-                    srand(semente_minutos_combustivel);
-                    entrada_aletoria_minutos_combustivel = 1+rand()%15;
+                    entrada_aletoria_minutos_combustivel = numero_aleatorio(1,15);
 
-                    unsigned semente_numero_de_passageiros = time(0);
-                    srand(semente_numero_de_passageiros);
-                    entrada_aletoria_numero_de_passageiros = 1+rand()%853;
+                    entrada_aletoria_numero_de_passageiros = numero_aleatorio(1,853);
+
+                    entrada_aletoria_do_id = numero_aleatorio(1000,9999);
+                    
+                    string entrada_aletoria_nome_da_compania = companias[numero_aleatorio(0,(companias.size()-1))];
+                    
 
                     cout<<"O "<<contador_avioes_inseridos+1<<"º avião tem:"<<endl;
                     cout<<entrada_aletoria_minutos_combustivel<<" minutos de combustível"<<endl;
                     cout<<entrada_aletoria_numero_de_passageiros<<" passageiros"<<endl;
+                    cout<<"Tem o ID: "<<entrada_aletoria_do_id<<endl;
+                    cout<<"E pertence a compania: "<<entrada_aletoria_nome_da_compania<<endl;
                     
-                    cout<<"Agora insira um id: "<<endl;
-                    cin>>id;
-
-                    cin.ignore();
-
-                    cout<<"insira o nome da Companhia: "<<endl;
-                    getline(cin,nome_companhia);
-
-                    aeroporto.inserir_aviao_na_aterrissagem(id,entrada_aletoria_minutos_combustivel,entrada_aletoria_numero_de_passageiros,nome_companhia);
+                    aeroporto.inserir_aviao_na_aterrissagem(entrada_aletoria_do_id,entrada_aletoria_minutos_combustivel,entrada_aletoria_numero_de_passageiros,entrada_aletoria_nome_da_compania);
 
                     contador_minutos++;//para que seja possível saber quando se passou um minuto no programa.
 
