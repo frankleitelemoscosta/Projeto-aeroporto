@@ -32,7 +32,7 @@ void Pista::inserir_na_aterrissagem(int id, int minutos_combustivel, int numero_
 {
     if(fila_1.vazia() && fila_2.vazia())//para a primeira inserção
     {
-        fila_1.inserir_na_fila(id,minutos_combustivel, numero_de_passageiros, nome_companhia,1);
+        fila_1.inserir_na_fila(id,minutos_combustivel, numero_de_passageiros, nome_companhia,id_fila);
     }
     else if (!fila_1.vazia())//para o programa saber como deixar as filas com tamanhos parecidos
     {
