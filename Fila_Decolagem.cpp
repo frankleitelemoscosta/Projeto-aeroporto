@@ -97,6 +97,11 @@ void Fila_Decolagem::inserir_final(int num_passageiros, int minutos_de_combustiv
 void Fila_Decolagem::mostrar_todos()
 {
     Aviao* ponteiro = ponta;
+    
+    int contador = 0;
+
+    cout<<endl<<endl<<endl;
+    cout<<"=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~Fila Aterrisagem~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"<<endl;
 
     if(vazia())
     {
@@ -108,7 +113,8 @@ void Fila_Decolagem::mostrar_todos()
         {
             if(ponteiro->Pegar_num_passageiros()!=0)
             {
-                //Mostrar todos os atributos:
+                //Mostrar todos os atributos:contador+=1;
+                cout<<"Avião número: "<<contador<<endl;
                 cout<<"Número de passageiros: "<<ponteiro->Pegar_num_passageiros()<<endl;
                 cout<<"Minutos de Combustível: "<<ponteiro->Pegar_minutos_de_combustivel()<<endl;
                 cout<<"Compania: "<<ponteiro->Pegar_companhia()<<endl;
@@ -120,6 +126,9 @@ void Fila_Decolagem::mostrar_todos()
             ponteiro = ponteiro->Pegar_proximo();
         }
     }
+
+    cout<<"=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"<<endl;
+
 }
 
 

@@ -78,19 +78,24 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
 void Fila_Aerea::mostrar_todos()
 {
     //inicio das variaveis locais
-        Aviao *ponteiro = new Aviao();
-        ponteiro = ponta;
+    Aviao *ponteiro = new Aviao();
+    ponteiro = ponta;
+    int contador = 0;
     //fim das variaveis locais
 
+    cout<<endl<<endl<<endl;
+    cout<<"=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~Fila Aerea~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"<<endl;
     if(vazia())
     {
-        cout<<"A fila está vazia!"<<endl<<endl;
+        cout<<"A fila aerea está vazia!"<<endl<<endl;
     }
     else
     {
         while(ponteiro)
         {
                 //Mostrar todos os atributos:
+            contador+=1;
+            cout<<"Avião número: "<<contador<<endl;
             cout<<"Número de passageiros: "<<ponteiro->Pegar_num_passageiros()<<endl;
             cout<<"Minutos de Combustível: "<<ponteiro->Pegar_minutos_de_combustivel()<<endl;
             cout<<"Compania: "<<ponteiro->Pegar_companhia()<<endl;
@@ -103,6 +108,7 @@ void Fila_Aerea::mostrar_todos()
             ponteiro = ponteiro->Pegar_proximo();
         }
     }
+    cout<<"=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"<<endl;
 }
 
 
@@ -250,7 +256,7 @@ void Fila_Aerea::tempo_medio_filas(int fila)
 
             //procedimento para calcular tempo medio de aterrissagem na fila
                 if(fila==1)
-                {         
+                {
                     tempo_medio = this->Dividendo_fila1/this->contador_aterrissagem_fila1;
                     cout<<setprecision(2)<<"Tempo médio de aterrissagem para fila1: "<<tempo_medio<<" minutos"<<endl;
                     cout<<endl;
