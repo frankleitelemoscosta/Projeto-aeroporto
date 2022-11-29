@@ -11,6 +11,7 @@
     #include <string>
     #include <cstring>
     #include<iomanip>
+    #include"Fila_Aterrissagem_P3.hpp"
     using namespace std;
 //fim das bibliotecas
 
@@ -52,12 +53,15 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
         ponta = novo_no;
         dianteira = novo_no;
         ponta->Inserir_proximo(nullptr);
-    
+        ponta->Inserir_anterior(nullptr);
+
     } else {
 
         dianteira->Inserir_proximo(novo_no);
+        dianteira->Inserir_anterior(dianteira);
         dianteira = novo_no;
         dianteira->Inserir_proximo(nullptr);
+        
     
     }
 
@@ -109,47 +113,6 @@ void Fila_Aerea::mostrar_todos()
         }
     }
     cout<<"=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"<<endl;
-}
-
-
-void Fila_Aerea::Buscar_Aviao(int ID)
-{
-    //inicio das variaveis locais
-        Aviao *ponteiro = new Aviao();
-        ponteiro = ponta;
-        int token_de_busca = 0;
-    //fim das variaveis locais
-
-    if(vazia())
-    {
-        cout<<"Não há ninguém nesta fila!";
-    }
-    else
-    {
-        while(ponteiro)
-        {
-            if(ponteiro->Pegar_ID()==ID)
-            {
-                //Mostrar todos os atributos:
-                cout<<"O ID está presente próximo ao aeroporto ou dentro dele!"<<endl;
-                token_de_busca = 1;
-                break;
-            }
-            else
-            {
-                ponteiro = ponteiro->Pegar_proximo();
-                token_de_busca = 0;
-            }
-        }
-        if(token_de_busca == 1)
-        {
-            token_de_busca=1;
-        }
-        else
-        {
-            cout<<"Não foi possível encontrar esta pessoa na fila!!";
-        }
-    }
 }
 
 
@@ -314,6 +277,77 @@ void Fila_Aerea::diminuir_tempo()
             ponteiro = ponteiro->Pegar_proximo();
         }
     //fim deste procedimento
+}
+
+void Fila_Aerea::emergencia()
+{
+    //inicio das variaveis locais
+        Aviao *ponteiro = ponta;
+        Aviao *aux;
+        Aviao *aux2;
+        Fila_Aterrissagem_P3 fila_emergencia;
+        int contador = 0;
+        int combustivel;
+        string companhia;
+        int numero_passageiros;
+         int cont1 = 0,cont2 = 0;
+    //fim das variaveis locais
+
+    while(ponteiro)
+    {
+        if(ponteiro->Pegar_minutos_de_combustivel() <= 3)
+        {
+            companhia = ponteiro->Pegar_companhia();
+            combustivel = ponteiro->Pegar_minutos_de_combustivel();
+            numero_passageiros = ponteiro->Pegar_num_passageiros();
+            fila_emergencia.inserir_final(numero_passageiros,combustivel,companhia);
+            contador++;
+
+            //excluindo o avião da atinga fila
+            
+
+            if(ponteiro->pegar_anterior()!=nullptr)
+            {
+                aux2 = ponteiro->pegar_anterior();
+                cont1++;
+            }
+            if(ponteiro->Pegar_proximo()!=nullptr)
+            {
+                aux = ponteiro->Pegar_proximo();
+                cont2++;
+            }
+            //removendo o nó do c
+            if(cont1!=0 && cont2!=0)//aqui é o caso onde pego um nó no meio da fila
+            {
+                aux2->Inserir_proximo(aux);
+
+            }else if(cont1!=0 && cont2==0)//aqui é o caso onde pegou um nó final da fila
+            {
+                aux2->Inserir_proximo(nullptr);
+            }
+            if(cont2!=0 && cont1!=0)//aqui é um caso no meio da lista
+            {
+                aux2->Inserir_proximo(aux);
+
+            }else if(cont2!=0  && cont1==0)//aqui é um caso no inicio da lista
+            {
+                aux->Inserir_anterior(nullptr);
+                ponta = aux;
+            }
+            if(cont1==0 && cont2==0)///caso onde tem se apenas um elemento
+            {
+                ponta = nullptr;
+            }
+            cont1=0;
+            cont2=0;
+            cout<<contador<<" aviões tiveram problemas e foram enviados para a terceira pista"<<endl<<endl;
+        }
+    
+        
+        ponteiro = ponteiro->Pegar_proximo();
+    }
+     free(ponteiro);
+
 }
 
 //fim do código

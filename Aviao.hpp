@@ -15,6 +15,7 @@ class Aviao
     private:
 
         Aviao *proximo;
+        Aviao *anterior;
         int num_passageiros;
         int minutos_de_combustivel;
         int ID;
@@ -54,6 +55,10 @@ class Aviao
 
         void Inserir_identificador_fila(int id_fila);
         int Pegar_fila_aviao();
+
+        void Inserir_anterior(Aviao *ponteiro);
+        Aviao *pegar_anterior();
+
         //fim dos métodos
 };
 

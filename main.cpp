@@ -18,14 +18,6 @@ int numero_aleatorio(int a, int b)
     return dis(gen);
 }
 
-// using namespace std;
-// int numero_aleatorio(int a, int b)
-// {
-//     srand(time(NULL));
-//     return (rand()%b) + a;
-    
-// }
-
 
 using namespace std;
 int main()
@@ -86,8 +78,8 @@ int main()
                     //Fim das variaveis aleatórias                    
 
                     //Início da apresentação do que será cadastrado na fila
-                    cout<<"O "<<contador_avioes_inseridos+1<<"º avião tem:"<<endl;
-                    cout<<entrada_aletoria_minutos_combustivel<<" minutos de combustível"<<endl;
+                    cout<<endl;
+                    cout<<"O "<<contador_avioes_inseridos+1<<"º avião tem: "<<entrada_aletoria_minutos_combustivel<<" minutos de combustível"<<endl;
                     cout<<entrada_aletoria_numero_de_passageiros<<" passageiros"<<endl;
                     cout<<"Tem o ID: "<<entrada_aletoria_do_id<<endl;
                     cout<<"E pertence a compania: "<<entrada_aletoria_nome_da_compania<<endl;
@@ -106,9 +98,9 @@ int main()
 
             }
 
-            case 2:
+            /*case 2:
                 aeroporto.impressao_filas();
-            break;
+            break;*/
 
             default:
                 cout<<"Digite uma opção existente no menu!"<<endl;
@@ -118,6 +110,7 @@ int main()
         //vai imprimir periodicamente dados dos avioẽs
         if(contador_inserc>=3)
         {
+            aeroporto.emergencia();
             aeroporto.diminuindo_tempo();
             aeroporto.tempo_medio_por_fila();
             aeroporto.remover_da_fila_aterrissagem();

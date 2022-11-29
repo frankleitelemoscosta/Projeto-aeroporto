@@ -35,6 +35,8 @@ class Aeroporto
 
     void diminuindo_tempo();
 
+    void emergencia();
+
 //fim dos métodos
 };
 

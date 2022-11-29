@@ -76,4 +76,11 @@ void Pista::diminuir_tempo()
     fila_1.diminuir_tempo();
     fila_2.diminuir_tempo();
 }
+
+void Pista::emergencia()
+{
+    fila_1.emergencia();
+    fila_2.emergencia();
+}
+
 //fim do código

@@ -31,14 +31,22 @@ class Fila_Aerea
         Fila_Aerea();//construtor
 
         bool vazia();
+
         void inserir_na_fila(int id,int minutos_combustivel, int numero_de_passageiros,string nome_companhia,int id_fila);
+        
         void mostrar_todos();
+        
         void Buscar_Aviao(int ID);
+        
         int size();
+        
         void remover();
+        
         void tempo_medio_filas(int fila);
+        
         void diminuir_tempo();
 
+        void emergencia();//para caso algum avião chega a 3 de combustível 
 //fim dos métodos
 };
 

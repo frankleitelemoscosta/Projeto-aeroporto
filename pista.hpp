@@ -29,6 +29,8 @@ class Pista
     void tempo_medio_filas(int fila,int fila2);
 
     void diminuir_tempo();
+
+    void emergencia();
  
 //fim dos métodos
 };

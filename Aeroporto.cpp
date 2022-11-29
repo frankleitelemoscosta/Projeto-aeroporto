@@ -37,6 +37,8 @@ void Aeroporto::remover_da_fila_aterrissagem()
     {
         pista_2.remover_da_aterrissagem();
     }
+    
+    pista_3.remover_da_aterrissagem();
 }
 
 void Aeroporto::remover_da_fila_decolagem()
@@ -61,6 +63,11 @@ void Aeroporto::diminuindo_tempo()
 {
     pista_1.diminuir_tempo();
     pista_2.diminuir_tempo();
+}
+
+void Aeroporto::emergencia()
+{
+    pista_1.emergencia();
 }
 
 //fim do código
