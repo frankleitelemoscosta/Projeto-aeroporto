@@ -21,7 +21,7 @@ class Aeroporto
 
     void inserir_aviao_na_aterrissagem(int id,int minutos_combustivel, int numero_de_passageiros, string nome_companhia);
 
-    void inserir_aviao_na_decolagem();
+    void inserir_aviao_na_decolagem(int id);
 
     void remover_da_fila_aterrissagem();
 

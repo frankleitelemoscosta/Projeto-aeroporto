@@ -63,6 +63,7 @@ void Pista::mostrar_filas()
 {
     fila_1.mostrar_todos();//filas de aterrissagem
     fila_2.mostrar_todos();
+    fila.mostrar_todos();
 }
 
 void Pista::tempo_medio_filas(int fila, int fila2)
@@ -83,4 +84,13 @@ void Pista::emergencia()
     fila_2.emergencia();
 }
 
+void Pista::inserir_decolagem(int id)
+{
+    fila.inserir_final(id);
+}
+
+int Pista::tamanho_fila_decolagem()
+{
+    fila.size();
+}
 //fim do código

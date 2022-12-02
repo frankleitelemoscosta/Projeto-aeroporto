@@ -24,6 +24,8 @@ class Fila_Aerea
         float contador_aterrissagem_fila2;
         float contador_aterrissagem_fila3;
         float contador_aterrissagem_fila4;
+        static int contador;
+        static int contador2;//esse auxiliar a variavel contador
 
 //fim dos atributos
     public:

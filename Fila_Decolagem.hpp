@@ -16,16 +16,15 @@ class Fila_Decolagem
 
     public:
         Fila_Decolagem();
-        Fila_Decolagem(int num_passageiros, int minutos_de_combustivel, string compania);
+        Fila_Decolagem(int num_passageiros, int minutos_de_combustivel);
 
         
         int Declarar_tamanho(int tamanho);
         int Pegar_tamanho();
 
         bool vazia();
-        void inserir_final(int num_passageiros, int minutos_de_combustivel, string compania);
+        void inserir_final(int id);
         void mostrar_todos();
-        void Buscar_Aviao(int ID);
         int size();
         void remover();
 };

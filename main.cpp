@@ -44,7 +44,7 @@ int main()
 
         cout<<"|-------------MENU--------------|"<<endl;
         cout<<"|1- Inserir um avião em uma fila|"<<endl;
-        cout<<"|2- Mostrar filas               |"<<endl;
+        cout<<"|2- Inserir na fila de decolagem|"<<endl;
         cout<<"|0- Sair do programa            |"<<endl;
         op = numero_aleatorio(1,2);
 
@@ -101,6 +101,15 @@ int main()
             /*case 2:
                 aeroporto.impressao_filas();
             break;*/
+            case 2:
+                cout<<"Insira os minutos de combustível do avião"<<endl;
+                cin>>minutos_combustivel;
+
+                contador_inserc++;
+
+                aeroporto.inserir_aviao_na_decolagem(minutos_combustivel);
+
+            break;
 
             default:
                 cout<<"Digite uma opção existente no menu!"<<endl;

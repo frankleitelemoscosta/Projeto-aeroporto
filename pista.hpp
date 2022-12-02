@@ -24,6 +24,8 @@ class Pista
 
     int tamanho_filas();
 
+    int tamanho_fila_decolagem();
+
     void mostrar_filas();
     
     void tempo_medio_filas(int fila,int fila2);
@@ -31,6 +33,10 @@ class Pista
     void diminuir_tempo();
 
     void emergencia();
+
+    void inserir_decolagem(int id);
+
+    void remover_da_decolagem();
  
 //fim dos métodos
 };

@@ -15,16 +15,8 @@ using namespace std;
 //Construtores:
 Fila_Decolagem::Fila_Decolagem()
 {
-    Aviao* ponta = new Aviao(0, 0, " ");
-    dianteira = ponta;
-    tamanho=0;
-}
-
-Fila_Decolagem::Fila_Decolagem(int num_passageiros, int minutos_de_combustivel, string compania)//"/Declarando método da classe nó que cria a frente da carrinho com um objeto do tipo Node na frente e um objeto na parte de trás que também tem o mesmo valor e da frente.
-{
-    Aviao* ponta = new Aviao(num_passageiros, minutos_de_combustivel, compania);
-    dianteira = ponta;
-    tamanho=1;
+    dianteira = nullptr;
+    ponta = nullptr;
 }
 
 int Fila_Decolagem::Pegar_tamanho() 
@@ -48,8 +40,8 @@ bool Fila_Decolagem::vazia() //verifica se a carrinho está vazia
 
 
 //Insere elemento no final do carrinho:
-void Fila_Decolagem::inserir_final(int num_passageiros, int minutos_de_combustivel, string compania) {
-    Aviao *novo_no = new Aviao(num_passageiros, minutos_de_combustivel, compania);
+void Fila_Decolagem::inserir_final(int id) {
+    Aviao *novo_no = new Aviao();
     
      int ID,erro=1,espera_estimada_minutos;
 
@@ -72,7 +64,6 @@ void Fila_Decolagem::inserir_final(int num_passageiros, int minutos_de_combustiv
         else
         {
             erro=0;
-            break;
         }
     
     }
@@ -81,9 +72,11 @@ void Fila_Decolagem::inserir_final(int num_passageiros, int minutos_de_combustiv
     if (vazia()) {
         ponta = novo_no;
         dianteira = novo_no;
+        dianteira->Inserir_proximo(nullptr);
     } else {
         dianteira->Inserir_proximo(novo_no);
         dianteira = novo_no;
+        dianteira->Inserir_proximo(nullptr);
     }
 
     cout << endl;
@@ -101,7 +94,7 @@ void Fila_Decolagem::mostrar_todos()
     int contador = 0;
 
     cout<<endl<<endl<<endl;
-    cout<<"=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~Fila Aterrisagem~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"<<endl;
+    cout<<"=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~Fila Decolagem~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"<<endl;
 
     if(vazia())
     {
@@ -110,9 +103,7 @@ void Fila_Decolagem::mostrar_todos()
     else
     {
         while(ponteiro)
-        {
-            if(ponteiro->Pegar_num_passageiros()!=0)
-            {
+        {   
                 //Mostrar todos os atributos:contador+=1;
                 cout<<"Avião número: "<<contador<<endl;
                 cout<<"Número de passageiros: "<<ponteiro->Pegar_num_passageiros()<<endl;
@@ -122,51 +113,13 @@ void Fila_Decolagem::mostrar_todos()
                 cout<<endl;
                 cout<<endl;
 
-            }
+            
             ponteiro = ponteiro->Pegar_proximo();
         }
     }
 
     cout<<"=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"<<endl;
 
-}
-
-
-void Fila_Decolagem::Buscar_Aviao(int ID)
-{
-    Aviao* ponteiro = ponta;
-    int token_de_busca = 0;
-
-    if(vazia())
-    {
-        cout<<"Não há ninguém nesta pista!";
-    }
-    else
-    {
-        while(ponteiro)
-        {
-            if(ponteiro->Pegar_ID()==ID)
-            {
-                //Mostrar todos os atributos:
-                cout<<"O ID está presente em uma pista de aterrissagem!"<<endl;
-                token_de_busca = 1;
-                break;
-            }
-            else
-            {
-                ponteiro = ponteiro->Pegar_proximo();
-                token_de_busca = 0;
-            }
-        }
-        if(token_de_busca == 1)
-        {
-            token_de_busca=1;
-        }
-        else
-        {
-            cout<<"Não foi possível encontrar esta pessoa na fila!!";
-        }
-    }
 }
 
 

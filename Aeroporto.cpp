@@ -20,11 +20,6 @@ void Aeroporto::inserir_aviao_na_aterrissagem(int id, int minutos_combustivel, i
     
 }
 
-void Aeroporto::inserir_aviao_na_decolagem()
-{
-
-}
-
 void Aeroporto::remover_da_fila_aterrissagem()
 {
     
@@ -51,6 +46,7 @@ void Aeroporto::impressao_filas()
     //aqui o que ocorre é que o programa acessa as duas pistas com suas duas filas para ler as filas por completo
     pista_1.mostrar_filas();
     pista_2.mostrar_filas();
+    pista_3.mostrar_filas();
 }
 
 void Aeroporto::tempo_medio_por_fila()
@@ -68,6 +64,21 @@ void Aeroporto::diminuindo_tempo()
 void Aeroporto::emergencia()
 {
     pista_1.emergencia();
+    pista_2.emergencia();
+}
+
+void Aeroporto::inserir_aviao_na_decolagem(int id)
+{
+    if(pista_1.tamanho_fila_decolagem()<pista_2.tamanho_fila_decolagem())
+    {
+        pista_1.inserir_decolagem(id);
+    } 
+    else if(pista_2.tamanho_fila_decolagem()<pista_3.tamanho_filas())
+    {
+        pista_2.inserir_decolagem(id);
+    } else{
+        pista_3.inserir_na_decolagem(id);
+    } 
 }
 
 //fim do código

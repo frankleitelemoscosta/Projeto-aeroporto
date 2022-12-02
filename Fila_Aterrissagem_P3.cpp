@@ -166,9 +166,9 @@ void Fila_Aterrissagem_P3::remover()
         cout<<"um avião tinha 0 de combustivel porque foi levado pela alcaida, ele não caiu"<<endl;
     }
 
-    if(!vazia())
+    if(vazia()==false)
     {
-        cout<<"Acaba de aterrissar um avião por emergencia"<<endl;
+        cout<<"Acaba de aterrissar um avião por emergencia!!!!!!!!!!!!!!!!"<<endl;
         ponta = ponta->Pegar_proximo();
         free(ponteiro);
         return;
@@ -176,7 +176,7 @@ void Fila_Aterrissagem_P3::remover()
 
     else
     {
-        cout<<"Esta fila está vazia"<<endl<<endl;
+        cout<<"Esta fila da pista 3 está vazia"<<endl<<endl;
     }
 
 }
