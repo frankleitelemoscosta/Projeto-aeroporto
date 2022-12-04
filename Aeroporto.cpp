@@ -76,7 +76,9 @@ void Aeroporto::inserir_aviao_na_decolagem(int id)
     else if(pista_2.tamanho_fila_decolagem()<pista_3.tamanho_filas())
     {
         pista_2.inserir_decolagem(id);
-    } else{
+    } 
+    else
+    {
         pista_3.inserir_na_decolagem(id);
     } 
 }

@@ -14,7 +14,7 @@ void Pista_de_emergencia::remover_da_aterrissagem()
 
 int Pista_de_emergencia::tamanho_filas()
 {
-        fila.size();
+        return fila.size();
 }
 
 void Pista_de_emergencia::inserir_na_decolagem(int id)

@@ -91,6 +91,6 @@ void Pista::inserir_decolagem(int id)
 
 int Pista::tamanho_fila_decolagem()
 {
-    fila.size();
+    return fila.size();
 }
 //fim do código

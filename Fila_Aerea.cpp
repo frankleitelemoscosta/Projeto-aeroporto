@@ -103,9 +103,9 @@ void Fila_Aerea::mostrar_todos()
                 //Mostrar todos os atributos:
             contador+=1;
             cout<<"Avião número: "<<contador<<endl;
-           // cout<<"Número de passageiros: "<<ponteiro->Pegar_num_passageiros()<<endl;
+            cout<<"Número de passageiros: "<<ponteiro->Pegar_num_passageiros()<<endl;
             cout<<"Minutos de Combustível: "<<ponteiro->Pegar_minutos_de_combustivel()<<endl;
-           // cout<<"Compania: "<<ponteiro->Pegar_companhia()<<endl;
+            cout<<"Compania: "<<ponteiro->Pegar_companhia()<<endl;
             cout<<"ID: "<<ponteiro->Pegar_ID()<<endl;
             cout<<"Tempo de espera: "<<ponteiro->Pegar_tempo_aterrissagem()<<endl;
             cout<<"Fila a qual pertence: "<<ponteiro->Pegar_fila_aviao()<<endl;
@@ -297,7 +297,7 @@ void Fila_Aerea::emergencia()
         int combustivel;
         string companhia;
         int numero_passageiros;
-         int cont1 = 0,cont2 = 0;
+        int cont1 = 0,cont2 = 0;
     //fim das variaveis locais
 
     
