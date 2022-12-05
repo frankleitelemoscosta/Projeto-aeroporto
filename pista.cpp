@@ -84,13 +84,23 @@ void Pista::emergencia()
     fila_2.emergencia();
 }
 
-void Pista::inserir_decolagem(int id)
+void Pista::inserir_decolagem(int id,int filaa, int minutos_combustivel, int numero_passageiros, string nome_da_companhia)
 {
-    fila.inserir_final(id);
+    fila.inserir_final(id, filaa, minutos_combustivel, numero_passageiros, nome_da_companhia);
 }
 
 int Pista::tamanho_fila_decolagem()
 {
     return fila.size();
+}
+
+void Pista::tempo_medio_decolagem(int filaa)
+{
+    fila.tempo_medio(filaa);
+}
+
+void Pista::aumentar_tempo()
+{
+    fila.aumentar_tempo();
 }
 //fim do código

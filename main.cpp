@@ -32,7 +32,7 @@ int main()
         int avioes_chegando = 0;//aleatorio
         int minutos_combustivel = 0;//aleatorio
         vector <string> companias{"Tam", "Gol", "Azul", "Avianca", "American Airlines"};
-        int cont_aux = 0;
+        
         int numero_avioes = 0;
         int minutos_combustivel2 = 0;//para o caso 2 aleatorio
         int decisao = 0;
@@ -50,7 +50,7 @@ int main()
         cout<<"|1- Inserir um avião em uma fila|"<<endl;
         cout<<"|2- Inserir na fila de decolagem|"<<endl;
         cout<<"|0- Sair do programa            |"<<endl;
-        op = numero_aleatorio(1,2);
+        op = numero_aleatorio(1,3);
 
         if(contador_inserc >= 2)
         {   
@@ -75,7 +75,60 @@ int main()
             
             break;
 
+            //Cadastrar um avião na fila aerea de aterrissagem:
             case 1:
+                if(contador != 3)
+                {
+                    //Início da geração e registro de aviões aleatórios: 
+                    avioes_chegando = numero_aleatorio(1,3);
+
+                    cout<<"Estão chegando: "<< avioes_chegando <<" aviões"<<endl;
+
+                    numero_avioes = numero_avioes + avioes_chegando;
+                    
+
+                    for(int contador_avioes_inseridos = 0; contador_avioes_inseridos < avioes_chegando ; contador_avioes_inseridos++)
+                    {
+                        //Inicio das sementes que representam variáveis locais aletórias:
+                        do{
+
+                            minutos_combustivel = numero_aleatorio(1,15);
+                        
+                        }while(0>minutos_combustivel||minutos_combustivel==0);
+                        
+                        contador++;
+                        
+                        int numero_passageiros = numero_aleatorio(1,853);
+                        
+                        int entrada_aletoria_do_id = numero_aleatorio(1000,9999);
+                        
+                        string nome_da_compania = companias[numero_aleatorio(0,(companias.size()-1))];
+
+                        //Fim das variaveis aleatórias                    
+
+                        //Início da apresentação do que será cadastrado na fila
+                        cout<<endl;
+                        cout<<"O "<<contador_avioes_inseridos+1<<"º avião tem: "<<minutos_combustivel<<" minutos de combustível"<<endl;
+                        cout<<numero_passageiros<<" passageiros"<<endl;
+                        cout<<"Tem o ID: "<<entrada_aletoria_do_id<<endl;
+                        cout<<"E pertence a compania: "<<nome_da_compania<<endl;
+                        
+                        aeroporto.inserir_aviao_na_decolagem(entrada_aletoria_do_id, minutos_combustivel, numero_passageiros, nome_da_compania);
+                        //Fim de uma iteração do laço criado para inserir vários aviões na fila
+
+                        contador_inserc++;//para que seja possível saber quando se passou um minuto no programa.
+
+                        cout<<endl<<endl;
+                    }
+                }
+
+                //Fim da geração e registro de aviões aleatórios:
+            
+            break;
+
+            
+            //Cadastrar um avião na fila de decolagem:
+            case 2:
                 if(contador != 3)
                 {
                     //Início da geração e registro de aviões aleatórios: 
@@ -120,27 +173,35 @@ int main()
                         cout<<endl<<endl;
                     }
                 }
-
-                //Fim da geração e registro de aviões aleatórios:
+            break;
             
+            //Cadastrar um avião na fila de decolagem:
+            case 3:
+                cout<<"Em manutenção"<<endl;
+            break;
+            
+            //Cadastrar um avião na fila de decolagem:
+            case 4:
+                cout<<"Em manutenção"<<endl;
             break;
 
+                        //Cadastrar um avião na fila de decolagem:
+            // case 5:
+
+            //     minutos_combustivel2 = numero_aleatorio(1,15);
+
+            //     cout<<"Combustivel do avião: "<<minutos_combustivel2<<endl;
+
+            //     contador_inserc++;
+
+            //     numero_avioes = numero_avioes + 1;
+
+            //     decisao = 1;
+
+            //     aeroporto.inserir_aviao_na_decolagem(minutos_combustivel2);
+
+            // break;
             
-            case 2:
-
-                minutos_combustivel2 = numero_aleatorio(1,15);
-
-                cout<<"Combustivel do avião: "<<minutos_combustivel2<<endl;
-
-                contador_inserc++;
-
-                numero_avioes = numero_avioes + 1;
-
-                decisao = 1;
-
-                aeroporto.inserir_aviao_na_decolagem(minutos_combustivel2);
-
-            break;
 
             default:
 
@@ -157,6 +218,8 @@ int main()
             aeroporto.tempo_medio_por_fila();
             aeroporto.remover_da_fila_aterrissagem();
             aeroporto.impressao_filas();
+            aeroporto.aumentar_tempo();
+            aeroporto.tempo_medio_decolagem();
             contador_inserc = 0;
             numero_avioes = 0;
             contador = 0;

@@ -118,6 +118,21 @@ int Aviao::Pegar_fila_aviao()
     return this->identificador_fila;//traz a qual fila o avião está
 }
 
+void Aviao::Aumentar_tempo_decolagem()
+{
+    this->decolagem_tempo = this->decolagem_tempo + 1;
+}
+
+void Aviao::Iniciando_tempo_decolagem()
+{
+    this->decolagem_tempo = 0;
+}
+
+int Aviao::Pegar_tempo_decolagem()
+{
+    return this->decolagem_tempo;
+}
+
 //fim dos gets e sets
 
 

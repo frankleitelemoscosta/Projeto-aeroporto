@@ -21,7 +21,7 @@ class Pista_de_emergencia
 
     void remover_da_aterrissagem();
 
-    void inserir_na_decolagem(int id);
+    void inserir_na_decolagem(int id,int minutos_combustivel,int numero_passageiros, string nome_da_companhia);
 
     int tamanho_filas();
 

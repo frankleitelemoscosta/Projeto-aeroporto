@@ -17,9 +17,9 @@ int Pista_de_emergencia::tamanho_filas()
         return fila.size();
 }
 
-void Pista_de_emergencia::inserir_na_decolagem(int id)
+void Pista_de_emergencia::inserir_na_decolagem(int id,int minutos_combustivel,int numero_passageiros, string companhia)
 {
-        fila.inserir_final(id);
+        fila.inserir_final(id,3,minutos_combustivel,numero_passageiros,companhia);
 }
 
 void Pista_de_emergencia::mostrar_filas()
