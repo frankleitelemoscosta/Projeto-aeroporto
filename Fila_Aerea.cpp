@@ -48,7 +48,7 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
 
     //incio das variaveis locais
         Aviao *novo_no = new Aviao();
-        int ID,erro = 1;
+        
     //fim das variaveis locais
 
     if (vazia()) {
@@ -64,8 +64,6 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
         dianteira->Inserir_anterior(dianteira);
         dianteira = novo_no;
         dianteira->Inserir_proximo(nullptr);
-        
-    
     }
 
     dianteira->Inserir_ID(id);
@@ -149,24 +147,25 @@ void Fila_Aerea::remover()
         ponteiro = ponta;
     //fim das variaveis locais
 
-
-    if(ponta->Pegar_fila_aviao()==1)
+    if(!vazia())
     {
-        this->contador_aterrissagem_fila1 = this->contador_aterrissagem_fila1 + 1;
+        if(ponta->Pegar_fila_aviao()==1)
+        {
+            this->contador_aterrissagem_fila1 = this->contador_aterrissagem_fila1 + 1;
+        }
+        else if(ponta->Pegar_fila_aviao()==2)
+        {
+            this->contador_aterrissagem_fila2 = this->contador_aterrissagem_fila2 + 1;
+        }
+        else if(ponta->Pegar_fila_aviao()==3)
+        {
+            this->contador_aterrissagem_fila3 = this->contador_aterrissagem_fila3 + 1;
+        }
+        else if(ponta->Pegar_fila_aviao()==4)
+        {
+            this->contador_aterrissagem_fila4 = this->contador_aterrissagem_fila4 + 1;
+        }
     }
-    else if(ponta->Pegar_fila_aviao()==2)
-    {
-        this->contador_aterrissagem_fila2 = this->contador_aterrissagem_fila2 + 1;
-    }
-    else if(ponta->Pegar_fila_aviao()==3)
-    {
-        this->contador_aterrissagem_fila3 = this->contador_aterrissagem_fila3 + 1;
-    }
-    else if(ponta->Pegar_fila_aviao()==4)
-    {
-        this->contador_aterrissagem_fila4 = this->contador_aterrissagem_fila4 + 1;
-    }
-
 
 
     if(!vazia())
@@ -278,11 +277,14 @@ void Fila_Aerea::diminuir_tempo()
     //fim das variaveis locais
 
     //Esse procedimento será responsável por reduzir o tempo de todos os aviões
-        while(ponteiro)
+        if(!vazia())
         {
-            ponteiro->Diminuir_tempo_aterrissagem();
+            while(ponteiro)
+            {
+                ponteiro->Diminuir_tempo_aterrissagem();
 
-            ponteiro = ponteiro->Pegar_proximo();
+                ponteiro = ponteiro->Pegar_proximo();
+            }
         }
     //fim deste procedimento
 }
@@ -290,9 +292,10 @@ void Fila_Aerea::diminuir_tempo()
 void Fila_Aerea::emergencia()
 {
     //inicio das variaveis locais
-        Aviao *ponteiro = ponta;
-        Aviao *aux;
-        Aviao *aux2;
+        Aviao *ponteiro = new Aviao();
+        ponteiro = ponta;
+        Aviao *aux = new Aviao();
+        Aviao *aux2 = new Aviao();
         Fila_Aterrissagem_P3 fila_emergencia;
         int combustivel;
         string companhia;
@@ -301,76 +304,138 @@ void Fila_Aerea::emergencia()
     //fim das variaveis locais
 
     
-
-    if(this->contador2 == 4)
+    if(!vazia())
     {
-        this->contador = 0;
-    }
-    this->contador2++;
-
-    while(ponteiro)
-    {
-        if(ponteiro->Pegar_minutos_de_combustivel() <= 3)
+        if(this->contador2 == 4)
         {
-            companhia = ponteiro->Pegar_companhia();
-            combustivel = ponteiro->Pegar_minutos_de_combustivel();
-            numero_passageiros = ponteiro->Pegar_num_passageiros();
-            fila_emergencia.inserir_final(numero_passageiros,combustivel,companhia);
-            this->contador++;
-            
-
-            //excluindo o avião da atinga fila
-            
-
-            if(ponteiro->pegar_anterior()!=nullptr)
-            {
-                aux2 = ponteiro->pegar_anterior();
-                cont1++;
-            }
-            if(ponteiro->Pegar_proximo()!=nullptr)
-            {
-                aux = ponteiro->Pegar_proximo();
-                cont2++;
-            }
-            //removendo o nó do c
-            if(cont1!=0 && cont2!=0)//aqui é o caso onde pego um nó no meio da fila
-            {
-                aux2->Inserir_proximo(aux);
-
-            }else if(cont1!=0 && cont2==0)//aqui é o caso onde pegou um nó final da fila
-            {
-                aux2->Inserir_proximo(nullptr);
-            }
-            if(cont2!=0 && cont1!=0)//aqui é um caso no meio da lista
-            {
-                aux2->Inserir_proximo(aux);
-
-            }else if(cont2!=0  && cont1==0)//aqui é um caso no inicio da lista
-            {
-                aux->Inserir_anterior(nullptr);
-                ponta = aux;
-            }
-            if(cont1==0 && cont2==0)///caso onde tem se apenas um elemento
-            {
-                ponta = nullptr;
-            }
-            cont1=0;
-            cont2=0;
-
-            //fim da exclusão do aviao da fila
-
-            cout<<contador<<" aviões tiveram problemas e foram enviados para a terceira pista"<<endl<<endl;
-
-            if(contador >= 3)
-            {
-                cout<<"Temos três avioes com problema, desse jeito a alcaida vem, entramos em estado critico"<<endl<<endl;
-                this->contador = 0;
-            }
+            this->contador = 0;
         }
-        
-        ponteiro = ponteiro->Pegar_proximo();
+        this->contador2++;
+    }//o erro não esta no looping
+
+    if(!vazia())
+    {
+        while(ponteiro)
+        {
+            if(ponteiro->Pegar_minutos_de_combustivel() <= 3)//é aqui que esta o erro
+            {
+                companhia = ponteiro->Pegar_companhia();
+
+                combustivel = ponteiro->Pegar_minutos_de_combustivel();
+
+                numero_passageiros = ponteiro->Pegar_num_passageiros();
+
+                fila_emergencia.inserir_final(numero_passageiros,combustivel,companhia);//não é aqui
+
+                this->contador++;
+                
+                cont1 = 0;
+                cont2 = 0;
+
+                //excluindo o avião da atinga fila
+                
+                //aqui é feito um reconhecimento da fila
+                if(ponteiro->pegar_anterior()!=nullptr)//isso garante que não vai existir erro por pegar posição inexistente
+                {
+                    aux2 = ponteiro->pegar_anterior();
+
+                    cont1++;
+                }
+                if(ponteiro->Pegar_proximo()!=nullptr)//isso garante que não vai existir erro por pegar posição inexistente
+                {
+                    aux = ponteiro->Pegar_proximo();
+
+                    cont2++;
+                }
+
+                //a partir daqui se decidi qual caso é e o que acontece
+
+                if(cont1!=0 && cont2!=0)//aqui é o caso onde pego um nó no meio da fila
+                {
+                    aux2->Inserir_proximo(aux);
+
+                    aux->Inserir_anterior(aux2);
+
+                    ponteiro = aux;
+
+                    aux = nullptr;
+
+                    free(aux);
+
+                    cont1 = 0;
+                    cont2 = 0;
+
+            
+                }
+                else if(cont1!=0 && cont2==0)//aqui é o caso onde pegou um nó final da fila
+                {
+                    aux2->Inserir_proximo(nullptr);
+
+                    dianteira = aux2;
+
+                    ponteiro = aux2;
+
+                    aux2 = nullptr;
+
+                    free(aux2);
+                    
+                    cont1 = 0;
+                    
+                }
+                else if(cont2!=0  && cont1==0)//aqui é um caso no inicio da lista
+                {
+                    aux->Inserir_anterior(nullptr);
+
+                    cont2 = 0;
+
+                    ponta = aux;
+                    
+                    aux = nullptr;
+
+                    free(aux);
+
+                    ponteiro = ponta;
+                    
+                }
+                else if(cont1==0 && cont2==0)///caso onde tem se apenas um elemento//o  erro esta aqui
+                {
+                    dianteira->Inserir_anterior(nullptr);
+                    ponta->Inserir_proximo(nullptr);
+                    dianteira->Inserir_proximo(nullptr);
+                    ponta->Inserir_anterior(nullptr);
+                    dianteira = nullptr;
+                    ponta = nullptr;
+
+                    
+                    return;
+                }
+
+                cont1 = 0;
+                cont2 = 0;
+
+
+                //fim da exclusão do aviao da fila
+
+                cout<<contador<<" aviões tiveram problemas e foram enviados para a terceira pista"<<endl<<endl;
+
+                if(contador >= 3)
+                {
+                    cout<<"Temos três avioes com problema, desse jeito a alcaida vem, entramos em estado critico"<<endl<<endl;
+                    this->contador = 0;
+                }
+            }
+
+            if(ponteiro->Pegar_proximo()!=nullptr && ponteiro != nullptr)
+            {
+                ponteiro = ponteiro->Pegar_proximo();
+            }
+            else
+            {
+                return;
+            }
+            
+        }
     }
-     free(ponteiro);
 
 }
 

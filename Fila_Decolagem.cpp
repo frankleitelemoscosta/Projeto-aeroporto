@@ -18,9 +18,9 @@ Fila_Decolagem::Fila_Decolagem()
 {
     dianteira = nullptr;
     ponta = nullptr;
-    contador_decolagem1 = 0;
-    contador_decolagem2 = 0;
-    contador_decolagem3 = 0;
+    contador_decolagem1 = 1;
+    contador_decolagem2 = 1;
+    contador_decolagem3 = 1;
 }
 
 int Fila_Decolagem::Pegar_tamanho() 
@@ -197,7 +197,7 @@ void Fila_Decolagem::aumentar_tempo()
     }
 }
 
-void Fila_Decolagem::tempo_medio(int fila)
+void Fila_Decolagem::tempo_medio(int pista)
 {
     Aviao *ponteiro = ponta;
     float tempo_medio1;
@@ -206,7 +206,7 @@ void Fila_Decolagem::tempo_medio(int fila)
 
     if(!vazia())
     {
-        while(ponteiro->Pegar_fila_aviao()==1)
+        while(ponteiro)
         {
         if(ponteiro->Pegar_fila_aviao()==1)
             {
@@ -228,7 +228,7 @@ void Fila_Decolagem::tempo_medio(int fila)
         }
 
                 //procedimento para calcular tempo medio de aterrissagem na fila
-                    if(fila==1)
+                    if(pista==1)
                     {
                         tempo_medio1 = this->Numerador1/this->contador_decolagem1;
                         cout<<setprecision(2)<<"Tempo médio de decola para pista1: "<<tempo_medio1<<" minutos"<<endl;
@@ -239,7 +239,7 @@ void Fila_Decolagem::tempo_medio(int fila)
 
             
                 //procedimento para calcular tempo medio de aterrissagem na fila dois
-                    if(fila==2)
+                    if(pista==2)
                     {
                         tempo_medio2 = this->Numerador2/this->contador_decolagem2;
                         cout<<setprecision(2)<<"Tempo médio de Decolagem na pista2: "<<tempo_medio2<<" minutos"<<endl;
@@ -250,7 +250,7 @@ void Fila_Decolagem::tempo_medio(int fila)
 
 
                 //procedimento para calcular tempo medio de aterrissagem na fila três
-                    if(fila==3)
+                    if(pista==3)
                     {
                         tempo_medio3 = this->Numerador3/this->contador_decolagem3;
                         cout<<setprecision(2)<<"Tempo médio de Decolagem na pista 3: "<<tempo_medio3<<" minutos"<<endl;

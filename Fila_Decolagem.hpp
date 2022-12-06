@@ -34,7 +34,7 @@ class Fila_Decolagem
         void mostrar_todos();
         int size();
         void remover();
-        void tempo_medio(int fila);
+        void tempo_medio(int pista);
 
         void aumentar_tempo();
 

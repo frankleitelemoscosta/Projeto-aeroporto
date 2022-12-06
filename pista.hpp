@@ -41,6 +41,7 @@ class Pista
     void tempo_medio_decolagem(int filaa);
 
     void aumentar_tempo();
+
 //fim dos métodos
 };
 

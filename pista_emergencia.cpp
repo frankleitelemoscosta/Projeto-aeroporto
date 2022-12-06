@@ -26,3 +26,8 @@ void Pista_de_emergencia::mostrar_filas()
 {
         fila.mostrar_todos();
 }
+
+void Pista_de_emergencia::tempo_medio_filas(int fila1)
+{
+        fila.tempo_medio(fila1);
+}

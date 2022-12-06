@@ -103,5 +103,4 @@ void Aeroporto::aumentar_tempo()
     pista_1.aumentar_tempo();
     pista_2.aumentar_tempo();
 }
-
 //fim do código

@@ -45,18 +45,25 @@ void Fila_Aterrissagem_P3::inserir_final(int num_passageiros, int minutos_de_com
 
     Aviao *novo_no = new Aviao();
     
-    if (vazia()) {
+    cout<<"ta chegando aqui"<<endl;
+
+    if (vazia()) 
+    {
         ponta = novo_no;
         dianteira = novo_no;
         dianteira->Inserir_proximo(nullptr);
-    } else {
+    } 
+    else {
         dianteira->Inserir_proximo(novo_no);
         dianteira = novo_no;
+        dianteira->Inserir_proximo(nullptr);
     }
 
-    dianteira ->Inserir_num_passageiros(num_passageiros);
+    dianteira->Inserir_num_passageiros(num_passageiros);
     dianteira->Inserir_minutos_de_combustivel(minutos_de_combustivel);
     dianteira->Inserir_companhia(companhia);
+
+    cout<<"ta chegando aqui"<<endl;
 
     cout << endl;
     cout << endl;

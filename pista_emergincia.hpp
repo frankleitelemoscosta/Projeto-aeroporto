@@ -27,7 +27,7 @@ class Pista_de_emergencia
 
     void mostrar_filas();
     
-    void tempo_medio_filas(int fila,int fila2);
+    void tempo_medio_filas(int fila);
 
     void diminuir_tempo();
  

@@ -219,14 +219,14 @@ int main()
             aeroporto.remover_da_fila_aterrissagem();
             aeroporto.impressao_filas();
             aeroporto.aumentar_tempo();
-            aeroporto.tempo_medio_decolagem();
+            aeroporto.tempo_medio_decolagem();//a excessão de ponto flutuante vemm daqui
             contador_inserc = 0;
             numero_avioes = 0;
             contador = 0;
             decisao = 0;
         }
 
-        if(contador_loops==2)
+        /*if(contador_loops==2)
         {
             //Inicio de proposição para parar o programa:
             cout<<"Deseja continuar?"<<endl;
@@ -236,16 +236,15 @@ int main()
 
             if(continuar==1)
             {
-                op=op;
+                op = op;
             }
             else
             {
-                op=0;
-                break;
+                op = 0;
             }
             //Fim da proposição para parar o programa
-            contador_loops =0;
-        }
+            contador_loops = 0;
+        }*/
 
     }while(op!=0);
     //fim do menu

@@ -94,13 +94,19 @@ int Pista::tamanho_fila_decolagem()
     return fila.size();
 }
 
-void Pista::tempo_medio_decolagem(int filaa)
+void Pista::tempo_medio_decolagem(int pista)
 {
-    fila.tempo_medio(filaa);
+    fila.tempo_medio(pista);
 }
 
 void Pista::aumentar_tempo()
 {
     fila.aumentar_tempo();
 }
+
+void Pista::remover_da_decolagem()
+{
+    fila.remover();
+}
+
 //fim do código
