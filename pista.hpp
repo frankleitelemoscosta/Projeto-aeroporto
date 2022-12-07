@@ -24,12 +24,24 @@ class Pista
 
     int tamanho_filas();
 
+    int tamanho_fila_decolagem();
+
     void mostrar_filas();
     
     void tempo_medio_filas(int fila,int fila2);
 
     void diminuir_tempo();
+
+    void emergencia();
+
+    void inserir_decolagem(int id,int filaa,int minutos_combustivel, int numero_passageiros, string companhia);
+
+    void remover_da_decolagem();
  
+    void tempo_medio_decolagem(int filaa);
+
+    void aumentar_tempo();
+
 //fim dos métodos
 };
 

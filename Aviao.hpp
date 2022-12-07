@@ -15,6 +15,7 @@ class Aviao
     private:
 
         Aviao *proximo;
+        Aviao *anterior;
         int num_passageiros;
         int minutos_de_combustivel;
         int ID;
@@ -22,6 +23,7 @@ class Aviao
         int espera_para_decolagem;
         int minutos_ate_aterrissar;//armazena quanto tempo um avião levou para aterrissar
         int identificador_fila;//com essa variavel se torna possível distinguir as filas
+        int decolagem_tempo;
 
     //fim dos atributos
     public:
@@ -54,6 +56,13 @@ class Aviao
 
         void Inserir_identificador_fila(int id_fila);
         int Pegar_fila_aviao();
+
+        void Inserir_anterior(Aviao *ponteiro);
+        Aviao *pegar_anterior();
+
+        void Aumentar_tempo_decolagem();
+        void Iniciando_tempo_decolagem();
+        int Pegar_tempo_decolagem();
         //fim dos métodos
 };
 

@@ -63,6 +63,7 @@ void Pista::mostrar_filas()
 {
     fila_1.mostrar_todos();//filas de aterrissagem
     fila_2.mostrar_todos();
+    fila.mostrar_todos();
 }
 
 void Pista::tempo_medio_filas(int fila, int fila2)
@@ -76,4 +77,36 @@ void Pista::diminuir_tempo()
     fila_1.diminuir_tempo();
     fila_2.diminuir_tempo();
 }
+
+void Pista::emergencia()
+{
+    fila_1.emergencia();
+    fila_2.emergencia();
+}
+
+void Pista::inserir_decolagem(int id,int filaa, int minutos_combustivel, int numero_passageiros, string nome_da_companhia)
+{
+    fila.inserir_final(id, filaa, minutos_combustivel, numero_passageiros, nome_da_companhia);
+}
+
+int Pista::tamanho_fila_decolagem()
+{
+    return fila.size();
+}
+
+void Pista::tempo_medio_decolagem(int pista)
+{
+    fila.tempo_medio(pista);
+}
+
+void Pista::aumentar_tempo()
+{
+    fila.aumentar_tempo();
+}
+
+void Pista::remover_da_decolagem()
+{
+    fila.remover();
+}
+
 //fim do código

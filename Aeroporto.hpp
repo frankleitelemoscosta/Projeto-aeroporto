@@ -21,11 +21,7 @@ class Aeroporto
 
     void inserir_aviao_na_aterrissagem(int id,int minutos_combustivel, int numero_de_passageiros, string nome_companhia);
 
-    void inserir_aviao_na_decolagem();
-
-    void remover_da_fila_aterrissagem();
-
-    void remover_da_fila_decolagem();
+    void inserir_aviao_na_decolagem(int id,int minutos_combustivel,int numero_passageiros, string nome_da_companhia);
 
     void impressao_filas();
 
@@ -35,6 +31,13 @@ class Aeroporto
 
     void diminuindo_tempo();
 
+    void emergencia();
+
+    void tempo_medio_decolagem();
+
+    void aumentar_tempo();
+
+    void Decisao_para_pista(int pista1, int pista2);
 //fim dos métodos
 };
 

@@ -15,17 +15,10 @@
 //Construtores:
 Fila_Aterrissagem_P3::Fila_Aterrissagem_P3()
 {
-    Aviao* ponta = new Aviao(0, 0, " ");
-    dianteira = ponta;
-    tamanho=1;
+    dianteira = nullptr;
+    ponta = nullptr;
 }
 
-Fila_Aterrissagem_P3::Fila_Aterrissagem_P3(int num_passageiros, int minutos_de_combustivel, string compania)//"/Declarando método da classe nó que cria a frente da carrinho com um objeto do tipo Node na frente e um objeto na parte de trás que também tem o mesmo valor e da frente.
-{
-    Aviao* ponta = new Aviao(num_passageiros, minutos_de_combustivel, compania);
-    dianteira = ponta;
-    tamanho=2;
-}
 
 int Fila_Aterrissagem_P3::Pegar_tamanho() 
 {
@@ -48,21 +41,32 @@ bool Fila_Aterrissagem_P3::vazia() //verifica se a carrinho está vazia
 
 
 //Insere elemento no final do carrinho:
-void Fila_Aterrissagem_P3::inserir_final(int num_passageiros, int minutos_de_combustivel, string compania) {
+void Fila_Aterrissagem_P3::inserir_final(int num_passageiros, int minutos_de_combustivel, string companhia) {
 
-    Aviao *novo_no = new Aviao(num_passageiros, minutos_de_combustivel, compania);
+    Aviao *novo_no = new Aviao();
     
-    if (vazia()) {
+   
+
+    if (vazia()) 
+    {
         ponta = novo_no;
         dianteira = novo_no;
-    } else {
+        dianteira->Inserir_proximo(nullptr);
+    } 
+    else {
         dianteira->Inserir_proximo(novo_no);
         dianteira = novo_no;
+        dianteira->Inserir_proximo(nullptr);
     }
+
+    dianteira->Inserir_num_passageiros(num_passageiros);
+    dianteira->Inserir_minutos_de_combustivel(minutos_de_combustivel);
+    dianteira->Inserir_companhia(companhia);
+
 
     cout << endl;
     cout << endl;
-    cout << "CADASTRO REALIZADO COM SUCESSO!!";
+    //cout << "CADASTRO REALIZADO COM SUCESSO!!";
     cout << endl;
     cout << endl;
     this->tamanho+=1;
@@ -70,7 +74,7 @@ void Fila_Aterrissagem_P3::inserir_final(int num_passageiros, int minutos_de_com
 
 void Fila_Aterrissagem_P3::mostrar_todos()
 {
-    Aviao* ponteiro = ponta;
+    Aviao *ponteiro = ponta;
 
     int contador = 0;
 
@@ -84,8 +88,7 @@ void Fila_Aterrissagem_P3::mostrar_todos()
     {
         while(ponteiro)
         {
-            if(ponteiro->Pegar_num_passageiros()!=0)
-            {
+            
                 //Mostrar todos os atributos:contador+=1;
                 cout<<"Avião número: "<<contador<<endl;
                 cout<<"Número de passageiros: "<<ponteiro->Pegar_num_passageiros()<<endl;
@@ -95,53 +98,13 @@ void Fila_Aterrissagem_P3::mostrar_todos()
                 cout<<endl;
                 cout<<endl;
 
-            }
+            
             ponteiro = ponteiro->Pegar_proximo();
         }
     }    
     cout<<"=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"<<endl;
 }
 
-
-void Fila_Aterrissagem_P3::Buscar_Aviao(int ID)
-{
-    //inicio das variaveis
-    Aviao *ponteiro = new Aviao();
-    ponteiro = ponta;
-    int token_de_busca = 0;
-    //fim das variaveis
-
-    if(vazia())
-    {
-        cout<<"Não há ninguém nesta pista!";
-    }
-    else
-    {
-        while(ponteiro)
-        {
-            if(ponteiro->Pegar_ID()==ID)
-            {
-                //Mostrar todos os atributos:
-                cout<<"O ID está presente em uma pista de aterrissagem!"<<endl;
-                token_de_busca = 1;
-                break;
-            }
-            else
-            {
-                ponteiro = ponteiro->Pegar_proximo();
-                token_de_busca = 0;
-            }
-        }
-        if(token_de_busca == 1)
-        {
-            token_de_busca=1;
-        }
-        else
-        {
-            cout<<"Não foi possível encontrar esta pessoa na fila!!";
-        }
-    }
-}
 
 
 int Fila_Aterrissagem_P3::size()
@@ -151,7 +114,7 @@ int Fila_Aterrissagem_P3::size()
         return 0;
     }
     //inicio das variaveis locais
-    Aviao* ponteiro = ponta;
+    Aviao *ponteiro = ponta;
     int tamanho = 0;
     //fim das variaveis locais
 
@@ -165,18 +128,23 @@ int Fila_Aterrissagem_P3::size()
 
 void Fila_Aterrissagem_P3::remover()
 {
-    Aviao *ponteiro = ponta; 
 
-    if(!vazia())
+    if(vazia()==false)
     {
+        if(ponta->Pegar_minutos_de_combustivel() <=0)
+        cout<<"um avião tinha 0 de combustivel porque foi levado pela alcaida, ele não caiu"<<endl;
+    }
+
+    if(vazia()==false)
+    {
+        cout<<"Acaba de aterrissar um avião por emergencia!!!!!!!!!!!!!!!!"<<endl;
         ponta = ponta->Pegar_proximo();
-        free(ponteiro);
         return;
     }
 
     else
     {
-        cout<<"Esta fila está vazia"<<endl<<endl;
+        cout<<"Esta fila da pista 3 está vazia"<<endl<<endl;
     }
 
 }

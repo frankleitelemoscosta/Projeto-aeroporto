@@ -10,24 +10,35 @@
 class Fila_Decolagem
 {
     private:
+
         Aviao *ponta;
         Aviao *dianteira;
         int tamanho;
+        int contador_decolagem1;
+        int contador_decolagem2;
+        int contador_decolagem3;
+        int Numerador1;
+        int Numerador2;
+        int Numerador3;
+        float save_tempo;
 
     public:
         Fila_Decolagem();
-        Fila_Decolagem(int num_passageiros, int minutos_de_combustivel, string compania);
+        Fila_Decolagem(int num_passageiros, int minutos_de_combustivel);
 
         
         int Declarar_tamanho(int tamanho);
         int Pegar_tamanho();
 
         bool vazia();
-        void inserir_final(int num_passageiros, int minutos_de_combustivel, string compania);
+        void inserir_final(int id,int filaa,int minutos_combustivel, int numero_passageiros, string nome_da_companhia);
         void mostrar_todos();
-        void Buscar_Aviao(int ID);
         int size();
         void remover();
+        void tempo_medio(int pista);
+
+        void aumentar_tempo();
+
 };
 
 #endif //F_PROVA_Fila_Decolagem_HPP
