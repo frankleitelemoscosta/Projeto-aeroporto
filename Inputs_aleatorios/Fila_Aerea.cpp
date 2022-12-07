@@ -10,9 +10,13 @@
     #include <iostream>
     #include <string>
     #include <cstring>
-    #include<iomanip>
+    #include <iomanip>
+    #include"Fila_Aterrissagem_P3.hpp"
     using namespace std;
 //fim das bibliotecas
+
+int Fila_Aerea::contador = 0;
+int Fila_Aerea::contador2 = 0;
 
 //Construtores:
 Fila_Aerea::Fila_Aerea()
@@ -44,7 +48,7 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
 
     //incio das variaveis locais
         Aviao *novo_no = new Aviao();
-        int ID,erro = 1;
+        
     //fim das variaveis locais
 
     if (vazia()) {
@@ -52,13 +56,19 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
         ponta = novo_no;
         dianteira = novo_no;
         ponta->Inserir_proximo(nullptr);
-    
+        ponta->Inserir_anterior(nullptr);
+
     } else {
 
         dianteira->Inserir_proximo(novo_no);
+        dianteira->Inserir_anterior(dianteira);
         dianteira = novo_no;
         dianteira->Inserir_proximo(nullptr);
-    
+    }
+
+    if(id%2==0)//tratamento para caso o numero não seja um impar
+    {   
+        id = id*2;
     }
 
     dianteira->Inserir_ID(id);
@@ -112,47 +122,6 @@ void Fila_Aerea::mostrar_todos()
 }
 
 
-void Fila_Aerea::Buscar_Aviao(int ID)
-{
-    //inicio das variaveis locais
-        Aviao *ponteiro = new Aviao();
-        ponteiro = ponta;
-        int token_de_busca = 0;
-    //fim das variaveis locais
-
-    if(vazia())
-    {
-        cout<<"Não há ninguém nesta fila!";
-    }
-    else
-    {
-        while(ponteiro)
-        {
-            if(ponteiro->Pegar_ID()==ID)
-            {
-                //Mostrar todos os atributos:
-                cout<<"O ID está presente próximo ao aeroporto ou dentro dele!"<<endl;
-                token_de_busca = 1;
-                break;
-            }
-            else
-            {
-                ponteiro = ponteiro->Pegar_proximo();
-                token_de_busca = 0;
-            }
-        }
-        if(token_de_busca == 1)
-        {
-            token_de_busca=1;
-        }
-        else
-        {
-            cout<<"Não foi possível encontrar esta pessoa na fila!!";
-        }
-    }
-}
-
-
 int Fila_Aerea::size()
 {
     if(vazia())
@@ -183,30 +152,33 @@ void Fila_Aerea::remover()
         ponteiro = ponta;
     //fim das variaveis locais
 
-
-    if(ponta->Pegar_fila_aviao()==1)
+    if(!vazia())
     {
-        this->contador_aterrissagem_fila1 = this->contador_aterrissagem_fila1 + 1;
+        if(ponta->Pegar_fila_aviao()==1)
+        {
+            this->contador_aterrissagem_fila1 = this->contador_aterrissagem_fila1 + 1;
+        }
+        else if(ponta->Pegar_fila_aviao()==2)
+        {
+            this->contador_aterrissagem_fila2 = this->contador_aterrissagem_fila2 + 1;
+        }
+        else if(ponta->Pegar_fila_aviao()==3)
+        {
+            this->contador_aterrissagem_fila3 = this->contador_aterrissagem_fila3 + 1;
+        }
+        else if(ponta->Pegar_fila_aviao()==4)
+        {
+            this->contador_aterrissagem_fila4 = this->contador_aterrissagem_fila4 + 1;
+        }
     }
-    else if(ponta->Pegar_fila_aviao()==2)
-    {
-        this->contador_aterrissagem_fila2 = this->contador_aterrissagem_fila2 + 1;
-    }
-    else if(ponta->Pegar_fila_aviao()==3)
-    {
-        this->contador_aterrissagem_fila3 = this->contador_aterrissagem_fila3 + 1;
-    }
-    else if(ponta->Pegar_fila_aviao()==4)
-    {
-        this->contador_aterrissagem_fila4 = this->contador_aterrissagem_fila4 + 1;
-    }
-
 
 
     if(!vazia())
     {
 
         //daqui em diante se faz a remoção
+            cout<<"ID do avião que sai: "<<ponta->Pegar_ID()<<endl<<endl;
+            cout<<"Fila que pertence: "<<ponta->Pegar_fila_aviao()<<endl<<endl;
             ponta = ponta->Pegar_proximo();
             free(ponteiro);//deletando da memoria o nó anterior
         //fim da remoção
@@ -224,8 +196,16 @@ void Fila_Aerea::tempo_medio_filas(int fila)
     //inicio das variaveis locais
         Aviao *ponteiro = new Aviao();
         ponteiro = ponta;
-        float tempo_medio;
+        float tempo_medio1;
+        float tempo_medio2;
+        float tempo_medio3;
+        float tempo_medio4;
     //fim das variaveis locais
+
+    this->Dividendo_fila1 = 0;
+    this->Dividendo_fila2 = 0;
+    this->Dividendo_fila3 = 0;
+    this->Dividendo_fila4 = 0;
 
     if(!vazia())
     {    
@@ -257,8 +237,8 @@ void Fila_Aerea::tempo_medio_filas(int fila)
             //procedimento para calcular tempo medio de aterrissagem na fila
                 if(fila==1)
                 {
-                    tempo_medio = this->Dividendo_fila1/this->contador_aterrissagem_fila1;
-                    cout<<setprecision(2)<<"Tempo médio de aterrissagem para fila1: "<<tempo_medio<<" minutos"<<endl;
+                    tempo_medio1 = this->Dividendo_fila1/this->contador_aterrissagem_fila1;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem para fila1: "<<tempo_medio1<<" minutos"<<endl;
                     cout<<endl;
                     cout<<endl;
                 }
@@ -268,8 +248,8 @@ void Fila_Aerea::tempo_medio_filas(int fila)
             //procedimento para calcular tempo medio de aterrissagem na fila dois
                 if(fila==2)
                 {
-                    tempo_medio = this->Dividendo_fila2/this->contador_aterrissagem_fila2;
-                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila2: "<<tempo_medio<<" minutos"<<endl;
+                    tempo_medio2 = this->Dividendo_fila2/this->contador_aterrissagem_fila2;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila2: "<<tempo_medio2<<" minutos"<<endl;
                     cout<<endl;
                     cout<<endl;
                 }
@@ -279,8 +259,8 @@ void Fila_Aerea::tempo_medio_filas(int fila)
             //procedimento para calcular tempo medio de aterrissagem na fila três
                 if(fila==3)
                 {
-                    tempo_medio = this->Dividendo_fila3/this->contador_aterrissagem_fila3;
-                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila 3: "<<tempo_medio<<" minutos"<<endl;
+                    tempo_medio3 = this->Dividendo_fila3/this->contador_aterrissagem_fila3;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila 3: "<<tempo_medio3<<" minutos"<<endl;
                     cout<<endl;
                     cout<<endl;
                 }
@@ -289,8 +269,8 @@ void Fila_Aerea::tempo_medio_filas(int fila)
             //procedimento para calcular tempo medio de aterrissagem na fila dois
                 if(fila==4)
                 {
-                    tempo_medio = this->Dividendo_fila4/this->contador_aterrissagem_fila4;
-                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila 4: "<<tempo_medio<<" minutos"<<endl;
+                    tempo_medio4 = this->Dividendo_fila4/this->contador_aterrissagem_fila4;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila 4: "<<tempo_medio4<<" minutos"<<endl;
                     cout<<endl;
                     cout<<endl;
                 }
@@ -307,13 +287,166 @@ void Fila_Aerea::diminuir_tempo()
     //fim das variaveis locais
 
     //Esse procedimento será responsável por reduzir o tempo de todos os aviões
-        while(ponteiro)
+        if(!vazia())
         {
-            ponteiro->Diminuir_tempo_aterrissagem();
+            while(ponteiro)
+            {
+                ponteiro->Diminuir_tempo_aterrissagem();
 
-            ponteiro = ponteiro->Pegar_proximo();
+                ponteiro = ponteiro->Pegar_proximo();
+            }
         }
     //fim deste procedimento
+}
+
+void Fila_Aerea::emergencia()
+{
+    //inicio das variaveis locais
+        Aviao *ponteiro = new Aviao();
+        ponteiro = ponta;
+        Aviao *aux = new Aviao();
+        Aviao *aux2 = new Aviao();
+        Fila_Aterrissagem_P3 fila_emergencia;
+        int combustivel;
+        string companhia;
+        int numero_passageiros;
+        int cont1 = 0,cont2 = 0;
+    //fim das variaveis locais
+
+    
+    if(!vazia())
+    {
+        if(this->contador2 == 4)
+        {
+            this->contador = 0;
+        }
+        this->contador2++;
+    }//o erro não esta no looping
+
+    if(!vazia())
+    {
+        while(ponteiro)
+        {
+            if(ponteiro->Pegar_minutos_de_combustivel() <= 3)//é aqui que esta o erro
+            {
+                companhia = ponteiro->Pegar_companhia();
+
+                combustivel = ponteiro->Pegar_minutos_de_combustivel();
+
+                numero_passageiros = ponteiro->Pegar_num_passageiros();
+
+                fila_emergencia.inserir_final(numero_passageiros,combustivel,companhia);//não é aqui
+
+                this->contador++;
+                
+                cont1 = 0;
+                cont2 = 0;
+
+                //excluindo o avião da atinga fila
+                
+                //aqui é feito um reconhecimento da fila
+                if(ponteiro->pegar_anterior()!=nullptr)//isso garante que não vai existir erro por pegar posição inexistente
+                {
+                    aux2 = ponteiro->pegar_anterior();
+
+                    cont1++;
+                }
+                if(ponteiro->Pegar_proximo()!=nullptr)//isso garante que não vai existir erro por pegar posição inexistente
+                {
+                    aux = ponteiro->Pegar_proximo();
+
+                    cont2++;
+                }
+
+                //a partir daqui se decidi qual caso é e o que acontece
+
+                if(cont1!=0 && cont2!=0)//aqui é o caso onde pego um nó no meio da fila
+                {
+                    aux2->Inserir_proximo(aux);
+
+                    aux->Inserir_anterior(aux2);
+
+                    ponteiro = aux;
+
+                    aux = nullptr;
+
+                    free(aux);
+
+                    cont1 = 0;
+                    cont2 = 0;
+
+            
+                }
+                else if(cont1!=0 && cont2==0)//aqui é o caso onde pegou um nó final da fila
+                {
+                    aux2->Inserir_proximo(nullptr);
+
+                    dianteira = aux2;
+
+                    ponteiro = aux2;
+
+                    aux2 = nullptr;
+
+                    free(aux2);
+                    
+                    cont1 = 0;
+                    
+                }
+                else if(cont2!=0  && cont1==0)//aqui é um caso no inicio da lista
+                {
+                    aux->Inserir_anterior(nullptr);
+
+                    cont2 = 0;
+
+                    ponta = aux;
+                    
+                    aux = nullptr;
+
+                    free(aux);
+
+                    ponteiro = ponta;
+                    
+                }
+                else if(cont1==0 && cont2==0)///caso onde tem se apenas um elemento//o  erro esta aqui
+                {
+                    dianteira->Inserir_anterior(nullptr);
+                    ponta->Inserir_proximo(nullptr);
+                    dianteira->Inserir_proximo(nullptr);
+                    ponta->Inserir_anterior(nullptr);
+                    dianteira = nullptr;
+                    ponta = nullptr;
+
+                    
+                    return;
+                }
+
+                cont1 = 0;
+                cont2 = 0;
+
+
+                //fim da exclusão do aviao da fila
+
+                cout<<contador<<" aviões tiveram problemas e foram enviados para a terceira pista"<<endl<<endl;
+
+                if(contador >= 3)
+                {
+                    cout<<"Temos três avioes com problema, desse jeito a alcaida vem, entramos em estado critico"<<endl<<endl;
+                    this->contador = 0;
+                }
+            }
+
+            if(ponteiro->Pegar_proximo()!=nullptr && ponteiro != nullptr)
+            {
+                ponteiro = ponteiro->Pegar_proximo();
+            }
+            else
+            {
+                return;
+            }
+            
+        }
+    }
+
 }
 
 //fim do código

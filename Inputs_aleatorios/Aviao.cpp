@@ -18,15 +18,25 @@ Aviao::Aviao(int num_passageiros, int minutos_de_combustivel, string companhia)
 }
 
 //para alocação de memoria:
-void Aviao::Inserir_proximo(Aviao *ponteiro)
-{
-  this->proximo = ponteiro;
-}
+    void Aviao::Inserir_proximo(Aviao *ponteiro)
+    {
+      this->proximo = ponteiro;
+    }
 
-Aviao* Aviao::Pegar_proximo() 
-{
-  return this->proximo;
-}
+    Aviao *Aviao::Pegar_proximo() 
+    {
+      return this->proximo;
+    }
+
+    Aviao *Aviao::pegar_anterior()
+    {
+      return this->anterior;
+    }
+    void Aviao::Inserir_anterior(Aviao *ponteiro)
+    {
+      this->anterior = ponteiro;
+    }
+
 //fim 
 
 
@@ -106,6 +116,21 @@ void Aviao::Inserir_identificador_fila(int id_fila)
 int Aviao::Pegar_fila_aviao()
 {
     return this->identificador_fila;//traz a qual fila o avião está
+}
+
+void Aviao::Aumentar_tempo_decolagem()
+{
+    this->decolagem_tempo = this->decolagem_tempo + 1;
+}
+
+void Aviao::Iniciando_tempo_decolagem()
+{
+    this->decolagem_tempo = 0;
+}
+
+int Aviao::Pegar_tempo_decolagem()
+{
+    return this->decolagem_tempo;
 }
 
 //fim dos gets e sets

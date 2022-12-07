@@ -23,6 +23,7 @@ CC_FLAGS=-c         \
          -Wall      \
          -ansi      \
          -pedantic
+		 
 
 # Command used at clean target
 RM = rm -rf
