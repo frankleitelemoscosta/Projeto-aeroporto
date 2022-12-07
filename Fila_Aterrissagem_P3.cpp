@@ -45,7 +45,7 @@ void Fila_Aterrissagem_P3::inserir_final(int num_passageiros, int minutos_de_com
 
     Aviao *novo_no = new Aviao();
     
-    cout<<"ta chegando aqui"<<endl;
+   
 
     if (vazia()) 
     {
@@ -63,11 +63,10 @@ void Fila_Aterrissagem_P3::inserir_final(int num_passageiros, int minutos_de_com
     dianteira->Inserir_minutos_de_combustivel(minutos_de_combustivel);
     dianteira->Inserir_companhia(companhia);
 
-    cout<<"ta chegando aqui"<<endl;
 
     cout << endl;
     cout << endl;
-    cout << "CADASTRO REALIZADO COM SUCESSO!!";
+    //cout << "CADASTRO REALIZADO COM SUCESSO!!";
     cout << endl;
     cout << endl;
     this->tamanho+=1;

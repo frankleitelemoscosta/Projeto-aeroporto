@@ -20,6 +20,7 @@ class Fila_Decolagem
         int Numerador1;
         int Numerador2;
         int Numerador3;
+        float save_tempo;
 
     public:
         Fila_Decolagem();

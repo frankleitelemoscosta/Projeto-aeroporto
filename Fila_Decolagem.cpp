@@ -68,6 +68,11 @@ void Fila_Decolagem::inserir_final(int id,int fila, int minutos_combustivel ,int
         dianteira->Inserir_proximo(nullptr);
     }
 
+    if(id%2!=0)//esse é um tratamento para caso o id cadastrado não seja par
+    {   
+        id = id*2+1;
+    }
+    
     dianteira->Inserir_ID(id);
     dianteira->Inserir_companhia(nome_da_companhia);
     dianteira->Inserir_minutos_de_combustivel(minutos_combustivel);
@@ -157,15 +162,19 @@ void Fila_Decolagem::remover()
         if(ponta->Pegar_fila_aviao()==1)
         {
             this->contador_decolagem1 = this->contador_decolagem1 + 1;
+            this->save_tempo = this->save_tempo +ponta->Pegar_tempo_decolagem();
         }
         else if(ponta->Pegar_fila_aviao()==2)
         {
             this->contador_decolagem2 = this->contador_decolagem2 + 1;
+            this->save_tempo = this->save_tempo +ponta->Pegar_tempo_decolagem();
         }
         else if(ponta->Pegar_fila_aviao()==3)
         {
             this->contador_decolagem3 = this->contador_decolagem3 + 1;
+            this->save_tempo = save_tempo +ponta->Pegar_tempo_decolagem();
         }
+        
     }
 
     if(!vazia())
@@ -204,23 +213,27 @@ void Fila_Decolagem::tempo_medio(int pista)
     float tempo_medio2;
     float tempo_medio3;
 
+    this->Numerador1 = 0;
+    this->Numerador2 = 0;
+    this->Numerador3 = 0;
+
     if(!vazia())
     {
         while(ponteiro)
         {
         if(ponteiro->Pegar_fila_aviao()==1)
             {
-                this->Numerador1 = this->Numerador1 + ponteiro->Pegar_tempo_aterrissagem();
+                this->Numerador1 = this->Numerador1 + ponteiro->Pegar_tempo_decolagem();
                         
             }
             else if(ponteiro->Pegar_fila_aviao()==2)
             {
-                this->Numerador2 = this->Numerador2 + ponteiro->Pegar_tempo_aterrissagem();
+                this->Numerador2 = this->Numerador2 + ponteiro->Pegar_tempo_decolagem();
                         
             }
             else if(ponteiro->Pegar_fila_aviao()==3)
             {
-                this->Numerador3 = this->Numerador3 + ponteiro->Pegar_tempo_aterrissagem();
+                this->Numerador3 = this->Numerador3 + ponteiro->Pegar_tempo_decolagem();
 
             }
                     
@@ -230,8 +243,9 @@ void Fila_Decolagem::tempo_medio(int pista)
                 //procedimento para calcular tempo medio de aterrissagem na fila
                     if(pista==1)
                     {
+                        this->Numerador1 = this->save_tempo + this->Numerador1;
                         tempo_medio1 = this->Numerador1/this->contador_decolagem1;
-                        cout<<setprecision(2)<<"Tempo médio de decola para pista1: "<<tempo_medio1<<" minutos"<<endl;
+                        cout<<setprecision(2)<<"Tempo médio de decolagem para pista1: "<<tempo_medio1<<" minutos"<<endl;
                         cout<<endl;
                         cout<<endl;
                     }
@@ -241,6 +255,7 @@ void Fila_Decolagem::tempo_medio(int pista)
                 //procedimento para calcular tempo medio de aterrissagem na fila dois
                     if(pista==2)
                     {
+                        this->Numerador2 = this->save_tempo + this->Numerador2;
                         tempo_medio2 = this->Numerador2/this->contador_decolagem2;
                         cout<<setprecision(2)<<"Tempo médio de Decolagem na pista2: "<<tempo_medio2<<" minutos"<<endl;
                         cout<<endl;
@@ -252,6 +267,7 @@ void Fila_Decolagem::tempo_medio(int pista)
                 //procedimento para calcular tempo medio de aterrissagem na fila três
                     if(pista==3)
                     {
+                        this->Numerador3 = this->save_tempo + this->Numerador3;
                         tempo_medio3 = this->Numerador3/this->contador_decolagem3;
                         cout<<setprecision(2)<<"Tempo médio de Decolagem na pista 3: "<<tempo_medio3<<" minutos"<<endl;
                         cout<<endl;

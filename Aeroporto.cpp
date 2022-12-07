@@ -20,34 +20,6 @@ void Aeroporto::inserir_aviao_na_aterrissagem(int id, int minutos_combustivel, i
     
 }
 
-void Aeroporto::remover_da_fila_aterrissagem()
-{
-    
-
-    if(pista_1.tamanho_filas() > pista_2.tamanho_filas())
-    {
-        pista_1.remover_da_aterrissagem();
-    }
-    else
-    {
-        pista_2.remover_da_aterrissagem();
-    }
-    
-    pista_3.remover_da_aterrissagem();
-}
-
-void Aeroporto::remover_da_fila_decolagem()
-{
-    if(pista_1.tamanho_fila_decolagem() < pista_2.tamanho_fila_decolagem())
-    {
-        pista_2.remover_da_decolagem();
-    }
-    else if(pista_2.tamanho_fila_decolagem() < pista_1.tamanho_fila_decolagem())
-    {
-        pista_1.remover_da_decolagem();
-    }
-
-}
 
 void Aeroporto::impressao_filas()
 {
@@ -96,11 +68,75 @@ void Aeroporto::tempo_medio_decolagem()
 {
     pista_1.tempo_medio_decolagem(1);
     pista_2.tempo_medio_decolagem(2);
+    pista_3.tempo_medio_fila_decolagem(3);
 }
 
 void Aeroporto::aumentar_tempo()
 {
     pista_1.aumentar_tempo();
     pista_2.aumentar_tempo();
+    pista_3.aumentar_tempo();
+}
+
+void Aeroporto::Decisao_para_pista(int Pista1,int Pista2)
+{
+    int Pista3 = 1;
+
+    //para pista 1
+    switch(Pista1)
+    {
+        case 1:
+            pista_1.remover_da_decolagem();
+        break;
+        case 2:
+            pista_1.remover_da_aterrissagem();
+        break;
+    }
+
+    if(Pista1 == 1)
+    {
+        cout<<"Aconteceu uma decolagem na Primeira pista!"<<endl<<endl;
+    }else{
+        cout<<"Aconteceu um pouso na pista um"<<endl<<endl;
+    }
+    
+    switch(Pista2)
+    {
+        case 1:
+            pista_2.remover_da_decolagem();
+        break;
+        case 2:
+            pista_2.remover_da_aterrissagem();
+        break;
+    }
+
+    if(Pista2 == 1)
+    {
+        cout<<"Aconteceu uma decolagem na segunda pista!"<<endl<<endl;
+    }else{
+        cout<<"Aconteceu um pouso na pista dois"<<endl<<endl;
+    }
+
+    if(pista_3.Aterrissagem_vazia()==false)
+    {
+        Pista3 = 2;
+    }
+
+    if(Pista3 == 1)
+    {
+        cout<<"Aconteceu uma decolagem na terceira pista!"<<endl<<endl;
+    }else{
+        cout<<"Aconteceu um pouso de emergencia na pista três"<<endl<<endl;
+    }
+
+    switch (Pista3)
+    {
+        case 1:
+            pista_3.remover_decolagem();
+        break;
+        case 2:
+            pista_3.remover_da_aterrissagem();
+        break;
+    }
 }
 //fim do código

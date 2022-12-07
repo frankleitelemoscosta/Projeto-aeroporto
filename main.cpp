@@ -210,13 +210,20 @@ int main()
             break;
         }
 
+        int pista1;
+        int pista2;
+
+        pista1 = numero_aleatorio(1,2);
+        pista2 = numero_aleatorio(1,2);
+
         //vai imprimir periodicamente dados dos avioẽs
         if(contador_inserc>=3 && decisao == 1)
         {
             aeroporto.emergencia();
             aeroporto.diminuindo_tempo();
             aeroporto.tempo_medio_por_fila();
-            aeroporto.remover_da_fila_aterrissagem();
+            //tem de ser colocado para ser decidido se vai ocorrer uma aterrissagem ou decolagem
+            aeroporto.Decisao_para_pista(pista1,pista2);
             aeroporto.impressao_filas();
             aeroporto.aumentar_tempo();
             aeroporto.tempo_medio_decolagem();//a excessão de ponto flutuante vemm daqui
@@ -226,7 +233,7 @@ int main()
             decisao = 0;
         }
 
-        /*if(contador_loops==2)
+        if(contador_loops==2)
         {
             //Inicio de proposição para parar o programa:
             cout<<"Deseja continuar?"<<endl;
@@ -244,7 +251,7 @@ int main()
             }
             //Fim da proposição para parar o programa
             contador_loops = 0;
-        }*/
+        }
 
     }while(op!=0);
     //fim do menu

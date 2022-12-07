@@ -66,6 +66,11 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
         dianteira->Inserir_proximo(nullptr);
     }
 
+    if(id%2==0)//tratamento para caso o numero não seja um impar
+    {   
+        id = id*2;
+    }
+
     dianteira->Inserir_ID(id);
     dianteira->Inserir_minutos_de_combustivel(minutos_combustivel);
     dianteira->Inserir_num_passageiros(numero_de_passageiros);
@@ -197,6 +202,11 @@ void Fila_Aerea::tempo_medio_filas(int fila)
         float tempo_medio4;
     //fim das variaveis locais
 
+    this->Dividendo_fila1 = 0;
+    this->Dividendo_fila2 = 0;
+    this->Dividendo_fila3 = 0;
+    this->Dividendo_fila4 = 0;
+
     if(!vazia())
     {    
             while(ponteiro)
@@ -228,7 +238,7 @@ void Fila_Aerea::tempo_medio_filas(int fila)
                 if(fila==1)
                 {
                     tempo_medio1 = this->Dividendo_fila1/this->contador_aterrissagem_fila1;
-                    //cout<<setprecision(2)<<"Tempo médio de aterrissagem para fila1: "<<tempo_medio1<<" minutos"<<endl;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem para fila1: "<<tempo_medio1<<" minutos"<<endl;
                     cout<<endl;
                     cout<<endl;
                 }
@@ -239,7 +249,7 @@ void Fila_Aerea::tempo_medio_filas(int fila)
                 if(fila==2)
                 {
                     tempo_medio2 = this->Dividendo_fila2/this->contador_aterrissagem_fila2;
-                    //cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila2: "<<tempo_medio2<<" minutos"<<endl;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila2: "<<tempo_medio2<<" minutos"<<endl;
                     cout<<endl;
                     cout<<endl;
                 }
@@ -250,7 +260,7 @@ void Fila_Aerea::tempo_medio_filas(int fila)
                 if(fila==3)
                 {
                     tempo_medio3 = this->Dividendo_fila3/this->contador_aterrissagem_fila3;
-                   // cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila 3: "<<tempo_medio3<<" minutos"<<endl;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila 3: "<<tempo_medio3<<" minutos"<<endl;
                     cout<<endl;
                     cout<<endl;
                 }
@@ -260,7 +270,7 @@ void Fila_Aerea::tempo_medio_filas(int fila)
                 if(fila==4)
                 {
                     tempo_medio4 = this->Dividendo_fila4/this->contador_aterrissagem_fila4;
-                   // cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila 4: "<<tempo_medio4<<" minutos"<<endl;
+                    cout<<setprecision(2)<<"Tempo médio de aterrissagem na fila 4: "<<tempo_medio4<<" minutos"<<endl;
                     cout<<endl;
                     cout<<endl;
                 }

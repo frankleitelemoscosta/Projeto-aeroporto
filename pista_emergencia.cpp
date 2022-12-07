@@ -27,7 +27,22 @@ void Pista_de_emergencia::mostrar_filas()
         fila.mostrar_todos();
 }
 
-void Pista_de_emergencia::tempo_medio_filas(int fila1)
+void Pista_de_emergencia::tempo_medio_fila_decolagem(int pista)
 {
-        fila.tempo_medio(fila1);
+        fila.tempo_medio(pista);
+}
+
+void Pista_de_emergencia::remover_decolagem()
+{
+        fila.remover();
+}
+
+void Pista_de_emergencia::aumentar_tempo()
+{
+        fila.aumentar_tempo();
+}
+
+bool Pista_de_emergencia::Aterrissagem_vazia()
+{
+        return fila.vazia();
 }

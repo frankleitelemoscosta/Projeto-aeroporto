@@ -27,9 +27,15 @@ class Pista_de_emergencia
 
     void mostrar_filas();
     
-    void tempo_medio_filas(int fila);
+    void tempo_medio_fila_decolagem(int pista);
 
     void diminuir_tempo();
+
+    void remover_decolagem();
+
+    void aumentar_tempo();
+
+    bool Aterrissagem_vazia();
  
 //fim dos métodos
 };
