@@ -21,6 +21,7 @@ class Fila_Decolagem
         int Numerador2;
         int Numerador3;
         float save_tempo;
+        static float Tempo_Global;
 
     public:
         Fila_Decolagem();
@@ -38,6 +39,8 @@ class Fila_Decolagem
         void tempo_medio(int pista);
 
         void aumentar_tempo();
+
+        void Tempo_Global_Decolagem();
 
 };
 

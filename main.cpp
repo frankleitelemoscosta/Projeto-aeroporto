@@ -1,9 +1,3 @@
-//NOTAS:   ( ) - Programar inserção de variáveis por arquivo 
-         //( ) - Programar a redistribuição de aviões [caso o avião tenha 1 minuto de combustível apenas o avião troca de fila]
-         //( ) - 
-         //( ) - 
-
-
 
 //inicio das inclusões de bibliotecas
     #include <string>
@@ -177,6 +171,10 @@ int main()
 
                         contador_inserc++;//para que seja possível saber quando se passou um minuto no programa.
 
+                        decisao = 1;
+
+                        numero_avioes = numero_avioes + 1;
+
                         cout<<endl<<endl;
                     }
                 }
@@ -191,25 +189,7 @@ int main()
             case 4:
                 cout<<"Em manutenção"<<endl;
             break;
-
-                        //Cadastrar um avião na fila de decolagem:
-            // case 5:
-
-            //     minutos_combustivel2 = numero_aleatorio(1,15);
-
-            //     cout<<"Combustivel do avião: "<<minutos_combustivel2<<endl;
-
-            //     contador_inserc++;
-
-            //     numero_avioes = numero_avioes + 1;
-
-            //     decisao = 1;
-
-            //     aeroporto.inserir_aviao_na_decolagem(minutos_combustivel2);
-
-            // break;
             
-
             default:
 
                 cout<<"Digite uma opção existente no menu!"<<endl;
@@ -229,11 +209,13 @@ int main()
             aeroporto.emergencia();
             aeroporto.diminuindo_tempo();
             aeroporto.tempo_medio_por_fila();
+            aeroporto.Tempo_Global_aterrissagem();
             //tem de ser colocado para ser decidido se vai ocorrer uma aterrissagem ou decolagem
             aeroporto.Decisao_para_pista(pista1,pista2);
             aeroporto.impressao_filas();
             aeroporto.aumentar_tempo();
             aeroporto.tempo_medio_decolagem();//a excessão de ponto flutuante vemm daqui
+            aeroporto.Tempo_Global_Decolagem();
             contador_inserc = 0;
             numero_avioes = 0;
             contador = 0;

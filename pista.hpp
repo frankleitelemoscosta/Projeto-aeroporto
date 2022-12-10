@@ -18,7 +18,7 @@ class Pista
 
     Pista();//construtor
 
-    void inserir_na_aterrissagem(int id,int minutos_combustivel, int numero_de_passageiros, string nome_companhia,int id_fila1, int id_fila2);
+    void inserir_na_aterrissagem(int id,int minutos_combustivel, int numero_de_passageiros, string nome_companhia,int id_fila1, int id_fila2,int pista);
 
     void remover_da_aterrissagem();
 
@@ -41,6 +41,18 @@ class Pista
     void tempo_medio_decolagem(int filaa);
 
     void aumentar_tempo();
+
+    void Tempo_Global_Aterrissagem();
+
+    void Tempo_Global_Decolagem();
+
+    void Prioridade_Combustivel();
+
+    int Pegar_prioridade_P1();
+
+    int Pegar_prioridade_P2();
+
+    void Zerando_contadores();
 
 //fim dos métodos
 };

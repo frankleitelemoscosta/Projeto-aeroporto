@@ -24,6 +24,7 @@ class Aviao
         int minutos_ate_aterrissar;//armazena quanto tempo um avião levou para aterrissar
         int identificador_fila;//com essa variavel se torna possível distinguir as filas
         int decolagem_tempo;
+        int identificador_pista;
 
     //fim dos atributos
     public:
@@ -63,6 +64,9 @@ class Aviao
         void Aumentar_tempo_decolagem();
         void Iniciando_tempo_decolagem();
         int Pegar_tempo_decolagem();
+
+        void Inserir_pista(int pista);
+        int Pegar_pista();
         //fim dos métodos
 };
 

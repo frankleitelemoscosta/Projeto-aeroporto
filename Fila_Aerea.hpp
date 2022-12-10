@@ -26,6 +26,9 @@ class Fila_Aerea
         float contador_aterrissagem_fila4;
         static int contador;
         static int contador2;//esse auxiliar a variavel contador
+        static float tempo_Global;
+        int contaddor_auxiliar1;
+        int contaddor_auxiliar2;
 
 //fim dos atributos
     public:
@@ -34,7 +37,7 @@ class Fila_Aerea
 
         bool vazia();
 
-        void inserir_na_fila(int id,int minutos_combustivel, int numero_de_passageiros,string nome_companhia,int id_fila);
+        void inserir_na_fila(int id,int minutos_combustivel, int numero_de_passageiros,string nome_companhia,int id_fila,int pista);
         
         void mostrar_todos();
         
@@ -49,6 +52,16 @@ class Fila_Aerea
         void diminuir_tempo();
 
         void emergencia();//para caso algum avião chega a 3 de combustível 
+
+        void Tempo_Gobal();
+
+        void Prioridade_combustivel();
+
+        int contador_auxiliar1();
+
+        int contador_auxiliar2();
+
+        void Zerando_contadores();
 //fim dos métodos
 };
 

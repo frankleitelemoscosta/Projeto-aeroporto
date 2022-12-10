@@ -133,6 +133,16 @@ int Aviao::Pegar_tempo_decolagem()
     return this->decolagem_tempo;
 }
 
+void Aviao::Inserir_pista(int pista)
+{
+    this->identificador_pista = pista;
+}
+
+int Aviao::Pegar_pista()
+{
+    return this->identificador_pista;
+}
+
 //fim dos gets e sets
 
 
