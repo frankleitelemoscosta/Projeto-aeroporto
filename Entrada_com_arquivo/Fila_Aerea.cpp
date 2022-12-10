@@ -17,6 +17,8 @@
 
 int Fila_Aerea::contador = 0;
 int Fila_Aerea::contador2 = 0;
+float Fila_Aerea::tempo_Global = 0;
+
 
 //Construtores:
 Fila_Aerea::Fila_Aerea()
@@ -31,6 +33,8 @@ Fila_Aerea::Fila_Aerea()
     this->Dividendo_fila3 = 0;
     this->contador_aterrissagem_fila4 = 1;
     this->Dividendo_fila4 = 0;
+    this->contaddor_auxiliar1 = 0;
+    this->contaddor_auxiliar2 = 0;
 
 }
 
@@ -44,7 +48,7 @@ bool Fila_Aerea::vazia() //verifica se a carrinho está vazia
 
 
 //Insere elemento no final do carrinho:
-void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_passageiros,string nome_companhia,int id_fila) {
+void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_passageiros,string nome_companhia,int id_fila,int pista) {
 
     //incio das variaveis locais
         Aviao *novo_no = new Aviao();
@@ -77,6 +81,7 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
     dianteira->Inserir_companhia(nome_companhia);
     dianteira->Iniciando_tempo_aterrissagem();
     dianteira->Inserir_identificador_fila(id_fila);
+    dianteira->Inserir_pista(pista);
 
     cout << endl;
     cout << endl;
@@ -196,10 +201,10 @@ void Fila_Aerea::tempo_medio_filas(int fila)
     //inicio das variaveis locais
         Aviao *ponteiro = new Aviao();
         ponteiro = ponta;
-        float tempo_medio1;
-        float tempo_medio2;
-        float tempo_medio3;
-        float tempo_medio4;
+        float tempo_medio1 = 0;
+        float tempo_medio2 = 0;
+        float tempo_medio3 = 0;
+        float tempo_medio4 = 0;
     //fim das variaveis locais
 
     this->Dividendo_fila1 = 0;
@@ -275,6 +280,8 @@ void Fila_Aerea::tempo_medio_filas(int fila)
                     cout<<endl;
                 }
             //fim do procedimento
+
+            this->tempo_Global = this->tempo_Global + (tempo_medio1 + tempo_medio2 + tempo_medio3 + tempo_medio4);
     
     }
 }
@@ -313,6 +320,8 @@ void Fila_Aerea::emergencia()
         int cont1 = 0,cont2 = 0;
     //fim das variaveis locais
 
+     Prioridade_combustivel();
+    
     
     if(!vazia())
     {
@@ -323,7 +332,7 @@ void Fila_Aerea::emergencia()
         this->contador2++;
     }//o erro não esta no looping
 
-    if(!vazia())
+    if(!vazia() && (this->contaddor_auxiliar1 + this->contaddor_auxiliar2) < 3)
     {
         while(ponteiro)
         {
@@ -446,7 +455,142 @@ void Fila_Aerea::emergencia()
             
         }
     }
+}
 
+void Fila_Aerea::Tempo_Gobal()
+{
+    cout<<"Tempo Medio Global para Aterrissagem : "<<this->tempo_Global<<endl<<endl;
+}
+
+void Fila_Aerea::Prioridade_combustivel()
+{
+    //o que tem de ser feito aqui é uma leitura da fila, porem tenho de identificar em qual pista estou para que seja possível eu dizer para qual pista mandei 
+    //e bloquear a seleção do que ocorre com o que ocorre em cada pista
+
+    Aviao *ponteiro = new Aviao();
+    ponteiro = ponta;
+    Aviao *aux = new Aviao();
+    Aviao *aux2 = new Aviao();
+    int cont1 = 0;
+    int cont2 = 0;
+    
+
+    while(ponteiro)
+    {
+        if(ponteiro->Pegar_minutos_de_combustivel() <= 3)
+        {
+                cont1 = 0;
+                cont2 = 0;
+
+                //excluindo o avião da atinga fila
+                
+                //aqui é feito um reconhecimento da fila
+                if(ponteiro->pegar_anterior()!=nullptr)//isso garante que não vai existir erro por pegar posição inexistente
+                {
+                    aux2 = ponteiro->pegar_anterior();
+
+                    cont1++;
+                }
+                if(ponteiro->Pegar_proximo()!=nullptr)//isso garante que não vai existir erro por pegar posição inexistente
+                {
+                    aux = ponteiro->Pegar_proximo();
+
+                    cont2++;
+                }
+
+                //a partir daqui se decidi qual caso é e o que acontece
+
+                if(cont1!=0 && cont2!=0)//aqui é o caso onde pego um nó no meio da fila
+                {
+                    aux2->Inserir_proximo(aux);
+
+                    aux->Inserir_anterior(aux2);
+
+                    ponteiro = aux;
+
+                    aux = nullptr;
+
+                    free(aux);
+
+                    cont1 = 0;
+                    cont2 = 0;
+
+            
+                }
+                else if(cont1!=0 && cont2==0)//aqui é o caso onde pegou um nó final da fila
+                {
+                    aux2->Inserir_proximo(nullptr);
+
+                    dianteira = aux2;
+
+                    ponteiro = aux2;
+
+                    aux2 = nullptr;
+
+                    free(aux2);
+                    
+                    cont1 = 0;
+                    
+                }
+                else if(cont2!=0  && cont1==0)//aqui é um caso no inicio da lista
+                {
+                    aux->Inserir_anterior(nullptr);
+
+                    cont2 = 0;
+
+                    ponta = aux;
+                    
+                    aux = nullptr;
+
+                    free(aux);
+
+                    ponteiro = ponta;
+                    
+                }
+                else if(cont1==0 && cont2==0)///caso onde tem se apenas um elemento//o  erro esta aqui
+                {
+                    dianteira->Inserir_anterior(nullptr);
+                    ponta->Inserir_proximo(nullptr);
+                    dianteira->Inserir_proximo(nullptr);
+                    ponta->Inserir_anterior(nullptr);
+                    dianteira = nullptr;
+                    ponta = nullptr;
+
+                    
+                    return;
+                }
+
+                if(ponteiro->Pegar_pista() == 1)//valor recebido de outro arquivo
+                {       
+                    this->contaddor_auxiliar1 ++;
+                }
+                else if(ponteiro->Pegar_pista() == 2){
+                    this->contaddor_auxiliar2 ++;
+                }
+
+                cont1 = 0;
+                cont2 = 0;
+
+           
+        }
+        ponteiro = ponteiro->Pegar_proximo();
+    }
+}
+
+int Fila_Aerea::contador_auxiliar1()
+{
+    return this->contaddor_auxiliar1;
+}
+
+int Fila_Aerea::contador_auxiliar2()
+{
+    return this->contaddor_auxiliar2;
+}
+
+void Fila_Aerea::Zerando_contadores()
+{
+    this->contaddor_auxiliar1 = 0;
+    this->contaddor_auxiliar2 = 0;
 }
 
 //fim do código

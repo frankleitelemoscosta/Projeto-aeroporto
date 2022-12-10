@@ -13,6 +13,9 @@
 //fim das bibliotecas
 
 using namespace std;
+
+float Fila_Decolagem::Tempo_Global = 0;
+
 //Construtores:
 Fila_Decolagem::Fila_Decolagem()
 {
@@ -83,9 +86,7 @@ void Fila_Decolagem::inserir_final(int id,int fila, int minutos_combustivel ,int
 
 
     cout << endl;
-    cout << endl;
     cout << "CADASTRO REALIZADO COM SUCESSO!!";
-    cout << endl;
     cout << endl;
     this->tamanho+=1;
 }
@@ -209,9 +210,9 @@ void Fila_Decolagem::aumentar_tempo()
 void Fila_Decolagem::tempo_medio(int pista)
 {
     Aviao *ponteiro = ponta;
-    float tempo_medio1;
-    float tempo_medio2;
-    float tempo_medio3;
+    float tempo_medio1 = 0 ;
+    float tempo_medio2 = 0 ;
+    float tempo_medio3 = 0 ;
 
     this->Numerador1 = 0;
     this->Numerador2 = 0;
@@ -275,8 +276,13 @@ void Fila_Decolagem::tempo_medio(int pista)
                     }
                 //fim do procedimento
         
-        ponteiro = ponta;
+        this->Tempo_Global = this->Tempo_Global + (tempo_medio1 + tempo_medio2 + tempo_medio3);
     }
+}
+
+void Fila_Decolagem::Tempo_Global_Decolagem()
+{
+    cout<<"Tempo Global para Decolagem: "<<this->Tempo_Global<<endl<<endl;
 }
 
 //fim do codigo

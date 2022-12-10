@@ -1,9 +1,3 @@
-//NOTAS:   ( ) - Programar inserção de variáveis por arquivo 
-         //( ) - Programar a redistribuição de aviões [caso o avião tenha 1 minuto de combustível apenas o avião troca de fila]
-         //( ) - 
-         //( ) - 
-
-
 
 //inicio das inclusões de bibliotecas
     #include <string>
@@ -44,10 +38,14 @@ int main()
         int id;//aleatorio
         int contador_inserc = 0;
         int numero_passageiros = 0;//aleatorio
+        int entrada_aleatoria_id = 0;
         int avioes_chegando = 0;//aleatorio
+        string nome_da_compania;
         int minutos_combustivel = 0;//aleatorio
         vector <string> companias{"Tam", "Gol", "Azul", "Avianca", "American Airlines"};
         vector<int> dados_do_arquivo;
+        int validar_variavel = 0;
+        
         
         int numero_avioes = 0;
         int minutos_combustivel2 = 0;//para o caso 2 aleatorio
@@ -65,7 +63,7 @@ int main()
         {
             while(getline(chave_de_leitura, linha_do_arquivo))       
             {
-                fscanf(arquivo_de_leitura,"%i",&auxiliar_de_leitura);
+                fscanf(arquivo_de_leitura,"%i", &auxiliar_de_leitura);
 
                 dados_do_arquivo.push_back(auxiliar_de_leitura);
             }
@@ -110,7 +108,6 @@ int main()
         switch(op)
         {
             case 0:
-
                 cout<<"Saindo..."<<endl;
             
             break;
@@ -119,20 +116,25 @@ int main()
             case 1:
                 if(contador != 3)
                 {
+
                     //Início da geração e registro de aviões aleatórios: 
-                    avioes_chegando = dados_do_arquivo[contador_de_leitura];
-                    contador_de_leitura+=1;
-                    
+
                     do
                     {
-                        if((avioes_chegando>3) || (avioes_chegando<0))
+                        if((dados_do_arquivo[contador_de_leitura]>3) || (dados_do_arquivo[contador_de_leitura]<=0))
                         {
                             cout<<"Entrada inválida para avioes chegando";
                             contador_de_leitura+=1;
-                            avioes_chegando = dados_do_arquivo[contador_de_leitura];
                         }
-                    }while((avioes_chegando>3) || (avioes_chegando<0));
+                        else
+                        {
+                            avioes_chegando = dados_do_arquivo[contador_de_leitura];
+                            contador_de_leitura+=1;
+                            break;
+                        }
+                    }while((dados_do_arquivo[contador_de_leitura]>3) || (dados_do_arquivo[contador_de_leitura]<0));
 
+                    
 
                     cout<<"Estão chegando: "<< avioes_chegando <<" aviões"<<endl;
 
@@ -140,24 +142,71 @@ int main()
                     
                     for(int contador_avioes_inseridos = 0; contador_avioes_inseridos < avioes_chegando ; contador_avioes_inseridos++)
                     {
-                        //Inicio das sementes que representam variáveis locais aletórias:
-                        do{
-
-                            minutos_combustivel = dados_do_arquivo[contador_de_leitura];
-                            contador_de_leitura+=1;
                         
-                        }while(0>minutos_combustivel||minutos_combustivel==0);
+                        //Inicio das sementes que representam variáveis locais aletórias:
+
+                        do
+                       {
+                            if(dados_do_arquivo[contador_de_leitura]<=0 || dados_do_arquivo[contador_de_leitura]>15)
+                            {
+                                contador_de_leitura+=1;
+                            }
+                            else
+                            {
+                                minutos_combustivel = dados_do_arquivo[contador_de_leitura];
+                                contador_de_leitura+=1;
+                                break;
+                            }
+                       } while(dados_do_arquivo[contador_de_leitura]<=0 || dados_do_arquivo[contador_de_leitura]>15);
                         
                         contador++;
-                        
-                        int numero_passageiros = dados_do_arquivo[contador_de_leitura];
-                        contador_de_leitura+=1;
 
-                        int entrada_aletoria_do_id = dados_do_arquivo[contador_de_leitura];
-                        contador_de_leitura+=1;
-                        
-                        string nome_da_compania = companias[dados_do_arquivo[contador_de_leitura]];
-                        contador_de_leitura+=1;
+                        do
+                       {
+                            if(dados_do_arquivo[contador_de_leitura]<0 || dados_do_arquivo[contador_de_leitura]>853)
+                            {
+                                contador_de_leitura+=1;
+                            }
+                            else
+                            {
+                                numero_passageiros = dados_do_arquivo[contador_de_leitura];
+                                contador_de_leitura+=1;
+                                break;
+                            }
+                       } while(dados_do_arquivo[contador_de_leitura]<0 || dados_do_arquivo[contador_de_leitura]>853);
+
+
+                        do
+                       {
+                            if(dados_do_arquivo[contador_de_leitura]%2==0)
+                            {
+                                contador_de_leitura+=1;
+                            }
+                            else
+                            {
+                                entrada_aleatoria_id = dados_do_arquivo[contador_de_leitura];
+                                contador_de_leitura+=1;
+                                break;
+                            }
+                       } while(dados_do_arquivo[contador_de_leitura]%2==0); 
+
+                    
+                       
+                       do
+                       {
+                            if(dados_do_arquivo[contador_de_leitura]>4)
+                            {
+                                contador_de_leitura+=1;
+                            }
+                            else
+                            {
+                                nome_da_compania = companias[dados_do_arquivo[contador_de_leitura]];
+                                contador_de_leitura+=1;
+                                break;
+                            }
+                       } while(dados_do_arquivo[contador_de_leitura]>4);
+                       
+                       contador_de_leitura+=1;
 
                         //Fim das variaveis aleatórias                    
 
@@ -165,10 +214,11 @@ int main()
                         cout<<endl;
                         cout<<"O "<<contador_avioes_inseridos+1<<"º avião tem: "<<minutos_combustivel<<" minutos de combustível"<<endl;
                         cout<<numero_passageiros<<" passageiros"<<endl;
-                        cout<<"Tem o ID: "<<entrada_aletoria_do_id<<endl;
+                        cout<<"Tem o ID: "<<entrada_aleatoria_id<<endl;
                         cout<<"E pertence a compania: "<<nome_da_compania<<endl;
                         
-                        aeroporto.inserir_aviao_na_decolagem(entrada_aletoria_do_id, minutos_combustivel, numero_passageiros, nome_da_compania);
+                        aeroporto.inserir_aviao_na_decolagem(entrada_aleatoria_id, minutos_combustivel, numero_passageiros, nome_da_compania);
+                        
                         //Fim de uma iteração do laço criado para inserir vários aviões na fila
 
                         contador_inserc++;//para que seja possível saber quando se passou um minuto no programa.
@@ -185,20 +235,23 @@ int main()
             //Cadastrar um avião na fila de decolagem:
             case 2:
                 if(contador != 3)
-                {
+                    {
                     //Início da geração e registro de aviões aleatórios: 
-                    avioes_chegando = avioes_chegando = dados_do_arquivo[contador_de_leitura];
-                    contador_de_leitura+=1;
                     
                     do
                     {
-                        if((avioes_chegando>3) || (avioes_chegando<0))
+                        if((dados_do_arquivo[contador_de_leitura]>3) || (dados_do_arquivo[contador_de_leitura]<=0))
                         {
                             cout<<"Entrada inválida para avioes chegando";
                             contador_de_leitura+=1;
-                            avioes_chegando = dados_do_arquivo[contador_de_leitura];
                         }
-                    }while((avioes_chegando>3) || (avioes_chegando<0));
+                        else
+                        {
+                            avioes_chegando = dados_do_arquivo[contador_de_leitura];
+                            contador_de_leitura+=1;
+                            break;
+                        }
+                    }while((dados_do_arquivo[contador_de_leitura]>3) || (dados_do_arquivo[contador_de_leitura]<0));
 
                     cout<<"Estão chegando: "<< avioes_chegando <<" aviões"<<endl;
 
@@ -208,37 +261,85 @@ int main()
                     for(int contador_avioes_inseridos = 0; contador_avioes_inseridos < avioes_chegando ; contador_avioes_inseridos++)
                     {
                         //Inicio das sementes que representam variáveis locais aletórias:
-                        do{
-
-                            minutos_combustivel = dados_do_arquivo[contador_de_leitura];
-                            contador_de_leitura+=1;
                         
-                        }while(0>minutos_combustivel||minutos_combustivel==0);
+                        do
+                       {
+                            if(dados_do_arquivo[contador_de_leitura]<=0 || dados_do_arquivo[contador_de_leitura]>15)
+                            {
+                                contador_de_leitura+=1;
+                            }
+                            else
+                            {
+                                minutos_combustivel = dados_do_arquivo[contador_de_leitura];
+                                contador_de_leitura+=1;
+                                break;
+                            }
+                       } while(dados_do_arquivo[contador_de_leitura]<=0 || dados_do_arquivo[contador_de_leitura]>15);
+                        
+                    
                         
                         contador++;
-                        
-                        int numero_passageiros = dados_do_arquivo[contador_de_leitura];
-                        contador_de_leitura+=1;
 
-                        int entrada_aletoria_do_id = dados_do_arquivo[contador_de_leitura];
-                        contador_de_leitura+=1;
+                        do
+                       {
+                            if(dados_do_arquivo[contador_de_leitura]<0 || dados_do_arquivo[contador_de_leitura]>853)
+                            {
+                                contador_de_leitura+=1;
+                            }
+                            else
+                            {
+                                numero_passageiros = dados_do_arquivo[contador_de_leitura];
+                                contador_de_leitura+=1;
+                                break;
+                            }
+                       } while(dados_do_arquivo[contador_de_leitura]<0 || dados_do_arquivo[contador_de_leitura]>853); 
 
-                        string nome_da_compania = companias[dados_do_arquivo[contador_de_leitura]];
-                        contador_de_leitura+=1;
+                        do
+                       {
+                            if(dados_do_arquivo[contador_de_leitura]%2==0)
+                            {
+                                contador_de_leitura+=1;
+                            }
+                            else
+                            {
+                                entrada_aleatoria_id = dados_do_arquivo[contador_de_leitura];
+                                contador_de_leitura+=1;
+                                break;
+                            }
+                       } while(dados_do_arquivo[contador_de_leitura]%2==0); 
+
+                        do
+                       {
+                            if(dados_do_arquivo[contador_de_leitura]>4)
+                            {
+                                contador_de_leitura+=1;
+                            }
+                            else
+                            {
+                                nome_da_compania = companias[dados_do_arquivo[contador_de_leitura]];
+                                contador_de_leitura+=1;
+                                break;
+                            }
+                       } while(dados_do_arquivo[contador_de_leitura]>4);
+                       
                         
-                        //Fim das variaveis aleatórias                    
+                        //Fim das variaveis lidas pelo arquivo                    
 
                         //Início da apresentação do que será cadastrado na fila
                         cout<<endl;
                         cout<<"O "<<contador_avioes_inseridos+1<<"º avião tem: "<<minutos_combustivel<<" minutos de combustível"<<endl;
                         cout<<numero_passageiros<<" passageiros"<<endl;
-                        cout<<"Tem o ID: "<<entrada_aletoria_do_id<<endl;
+                        cout<<"Tem o ID: "<<entrada_aleatoria_id<<endl;
                         cout<<"E pertence a compania: "<<nome_da_compania<<endl;
                         
-                        aeroporto.inserir_aviao_na_aterrissagem(entrada_aletoria_do_id,minutos_combustivel,numero_passageiros,nome_da_compania);
+                        aeroporto.inserir_aviao_na_aterrissagem(entrada_aleatoria_id,minutos_combustivel,numero_passageiros,nome_da_compania);
                         //Fim de uma iteração do laço criado para inserir vários aviões na fila
 
                         contador_inserc++;//para que seja possível saber quando se passou um minuto no programa.
+
+                        decisao = 1;
+
+                        numero_avioes = numero_avioes + 1;
 
                         cout<<endl<<endl;
                     }
@@ -254,24 +355,6 @@ int main()
             case 4:
                 cout<<"Em manutenção"<<endl;
             break;
-
-                        //Cadastrar um avião na fila de decolagem:
-            // case 5:
-
-            //     minutos_combustivel2 = numero_aleatorio(1,15);
-
-            //     cout<<"Combustivel do avião: "<<minutos_combustivel2<<endl;
-
-            //     contador_inserc++;
-
-            //     numero_avioes = numero_avioes + 1;
-
-            //     decisao = 1;
-
-            //     aeroporto.inserir_aviao_na_decolagem(minutos_combustivel2);
-
-            // break;
-            
 
             default:
 
@@ -292,11 +375,13 @@ int main()
             aeroporto.emergencia();
             aeroporto.diminuindo_tempo();
             aeroporto.tempo_medio_por_fila();
+            aeroporto.Tempo_Global_aterrissagem();
             //tem de ser colocado para ser decidido se vai ocorrer uma aterrissagem ou decolagem
             aeroporto.Decisao_para_pista(pista1,pista2);
             aeroporto.impressao_filas();
             aeroporto.aumentar_tempo();
             aeroporto.tempo_medio_decolagem();//a excessão de ponto flutuante vemm daqui
+            aeroporto.Tempo_Global_Decolagem();
             contador_inserc = 0;
             numero_avioes = 0;
             contador = 0;

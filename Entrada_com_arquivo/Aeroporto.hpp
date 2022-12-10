@@ -38,6 +38,10 @@ class Aeroporto
     void aumentar_tempo();
 
     void Decisao_para_pista(int pista1, int pista2);
+
+    void Tempo_Global_aterrissagem();
+
+    void Tempo_Global_Decolagem();
 //fim dos métodos
 };
 

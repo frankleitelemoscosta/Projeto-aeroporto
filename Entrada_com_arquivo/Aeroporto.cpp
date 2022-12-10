@@ -12,10 +12,10 @@ void Aeroporto::inserir_aviao_na_aterrissagem(int id, int minutos_combustivel, i
 
     if(pista_1.tamanho_filas() < pista_2.tamanho_filas())//para inserir na menor fila visando deixa-las com o mesmo tamanho
     {
-        pista_1.inserir_na_aterrissagem(id, minutos_combustivel, numero_de_passageiros,nome_companhia,1,2);
+        pista_1.inserir_na_aterrissagem(id, minutos_combustivel, numero_de_passageiros,nome_companhia,1,2,1);
     }else
     {
-        pista_2.inserir_na_aterrissagem(id, minutos_combustivel, numero_de_passageiros, nome_companhia,3,4);
+        pista_2.inserir_na_aterrissagem(id, minutos_combustivel, numero_de_passageiros, nome_companhia,3,4,2);
     }
     
 }
@@ -44,6 +44,8 @@ void Aeroporto::diminuindo_tempo()
 
 void Aeroporto::emergencia()
 {
+    pista_1.Zerando_contadores();
+    pista_2.Zerando_contadores();
     pista_1.emergencia();
     pista_2.emergencia();
 }
@@ -82,15 +84,56 @@ void Aeroporto::Decisao_para_pista(int Pista1,int Pista2)
 {
     int Pista3 = 1;
 
-    //para pista 1
-    switch(Pista1)
+    if(pista_1.Pegar_prioridade_P1() == 1)
     {
-        case 1:
-            pista_1.remover_da_decolagem();
-        break;
-        case 2:
-            pista_1.remover_da_aterrissagem();
-        break;
+        Pista1 = 0;
+        cout<<"Foi pousado um aviao na primeira pista por falta de combustivel"<<endl;
+
+    }else if(pista_1.Pegar_prioridade_P1() == 2)
+    {
+        Pista1 = 0;
+        Pista2 = 0;
+        cout<<"Foi pousado dois avioes um na pista 2 e outro na pista 1, por falta de combustivel"<<endl;
+
+    }else if(pista_1.Pegar_prioridade_P1() >= 3)
+    {
+        Pista1 = 0;
+        Pista2 = 0;
+        Pista3 = 0;
+        cout<<"Foram pousados três avioes nas tres pistas, por falta de combustivel"<<endl;
+    }
+
+    if(pista_2.Pegar_prioridade_P2() == 1)
+    {
+        Pista1 = 0;
+
+        cout<<"Foi pousado um aviao na segunda pista por falta de combustivel"<<endl;
+
+    }else if(pista_1.Pegar_prioridade_P2() == 2)
+    {
+        Pista1 = 0;
+        Pista2 = 0;
+        cout<<"Foi pousado dois avioes um na pista 2 e outro na pista 1, por falta de combustivel"<<endl;
+    }else if(pista_1.Pegar_prioridade_P2() >= 3)
+    {
+        Pista1 = 0;
+        Pista2 = 0;
+        Pista3 = 0;
+        cout<<"Foram pousados três avioes nas tres pistas, por falta de combustivel"<<endl;
+    }
+    
+    //para pista 1
+    if(Pista1 != 0)
+    {
+        switch(Pista1)
+        {
+            case 1:
+                pista_1.remover_da_decolagem();
+            break;
+            case 2:
+                pista_1.remover_da_aterrissagem();
+            break;
+        }
     }
 
     if(Pista1 == 1)
@@ -100,14 +143,17 @@ void Aeroporto::Decisao_para_pista(int Pista1,int Pista2)
         cout<<"Aconteceu um pouso na pista um"<<endl<<endl;
     }
     
-    switch(Pista2)
+    if(Pista2 != 0)
     {
-        case 1:
-            pista_2.remover_da_decolagem();
-        break;
-        case 2:
-            pista_2.remover_da_aterrissagem();
-        break;
+        switch(Pista2)
+        {
+            case 1:
+                pista_2.remover_da_decolagem();
+            break;
+            case 2:
+                pista_2.remover_da_aterrissagem();
+            break;
+        }
     }
 
     if(Pista2 == 1)
@@ -129,14 +175,27 @@ void Aeroporto::Decisao_para_pista(int Pista1,int Pista2)
         cout<<"Aconteceu um pouso de emergencia na pista três"<<endl<<endl;
     }
 
-    switch (Pista3)
+    if(Pista3 != 0)
     {
-        case 1:
-            pista_3.remover_decolagem();
-        break;
-        case 2:
-            pista_3.remover_da_aterrissagem();
-        break;
+        switch (Pista3)
+        {
+            case 1:
+                pista_3.remover_decolagem();
+            break;
+            case 2:
+                pista_3.remover_da_aterrissagem();
+            break;
+        }
     }
+}
+
+void Aeroporto::Tempo_Global_aterrissagem()
+{
+    pista_1.Tempo_Global_Aterrissagem();
+}
+
+void Aeroporto::Tempo_Global_Decolagem()
+{
+    pista_1.Tempo_Global_Decolagem();
 }
 //fim do código
