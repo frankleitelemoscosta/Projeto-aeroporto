@@ -47,10 +47,10 @@ int main()
 
         contador_loops+=1;
 
-        cout<<"|-------------MENU--------------|"<<endl;
-        cout<<"|1- Inserir um avião em uma fila|"<<endl;
-        cout<<"|2- Inserir na fila de decolagem|"<<endl;
-        cout<<"|0- Sair do programa            |"<<endl;
+        cout<<"|--------------MENU---------------|"<<endl;
+        cout<<"|1- Inserir um avião na decolagem |"<<endl;
+        cout<<"|2- Inserir na fila de aterrisagem|"<<endl;
+        cout<<"|0- Sair do programa              |"<<endl;
         op = numero_aleatorio(1,3);
 
         if(contador_inserc >= 2)

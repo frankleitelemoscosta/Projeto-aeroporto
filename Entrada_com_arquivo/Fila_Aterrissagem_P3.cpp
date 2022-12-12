@@ -144,7 +144,7 @@ void Fila_Aterrissagem_P3::remover()
 
     else
     {
-        cout<<"Esta fila da pista 3 está vazia"<<endl<<endl;
+        cout<<"Esta fila de aterrissagem da pista 3 está vazia"<<endl<<endl;
     }
 
 }

@@ -70,9 +70,9 @@ void Fila_Aerea::inserir_na_fila(int id, int minutos_combustivel, int numero_de_
         dianteira->Inserir_proximo(nullptr);
     }
 
-    if(id%2==0)//tratamento para caso o numero não seja um impar
+    if(id%2 == 0)//tratamento para caso o numero não seja um impar
     {   
-        id = id*2;
+        id = (id*2)+1;
     }
 
     dianteira->Inserir_ID(id);
@@ -557,7 +557,7 @@ void Fila_Aerea::Prioridade_combustivel()
                     ponta = nullptr;
 
                     
-                    return;
+                    
                 }
 
                 if(ponteiro->Pegar_pista() == 1)//valor recebido de outro arquivo

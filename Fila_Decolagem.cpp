@@ -71,9 +71,9 @@ void Fila_Decolagem::inserir_final(int id,int fila, int minutos_combustivel ,int
         dianteira->Inserir_proximo(nullptr);
     }
 
-    if(id%2!=0)//esse é um tratamento para caso o id cadastrado não seja par
+    if(id%2 != 0)//esse é um tratamento para caso o id cadastrado não seja par
     {   
-        id = id*2+1;
+        id = id*2;
     }
     
     dianteira->Inserir_ID(id);

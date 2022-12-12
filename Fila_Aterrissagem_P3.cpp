@@ -139,12 +139,10 @@ void Fila_Aterrissagem_P3::remover()
     {
         cout<<"Acaba de aterrissar um avião por emergencia!!!!!!!!!!!!!!!!"<<endl;
         ponta = ponta->Pegar_proximo();
-        return;
     }
-
     else
     {
-        cout<<"Esta fila da pista 3 está vazia"<<endl<<endl;
+        cout<<"Esta fila de emergencia da pista 3 está vazia"<<endl<<endl;
     }
 
 }

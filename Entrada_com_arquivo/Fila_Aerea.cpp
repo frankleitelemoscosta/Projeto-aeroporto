@@ -426,7 +426,7 @@ void Fila_Aerea::emergencia()
                     ponta = nullptr;
 
                     
-                    return;
+                    
                 }
 
                 cont1 = 0;
