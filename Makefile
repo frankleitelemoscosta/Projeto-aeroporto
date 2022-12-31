@@ -1,56 +1,8 @@
-# Nome do projeto
-PROJ_NAME=Aeroporto
-#wildcard vai pegar todos os arquivos cpp
-CPP_SOURCE=$(wildcard ./*.cpp)
-
-#wildcard vai pegar todos os arquivos hpp
-HPP_SOURCE=$(wildcard ./*.hpp)
-
-#Arquivos compilados
-OBJ=$(subst .cpp,.o,$(subst source,objects,$(CPP_SOURCE)))
-
-# Compiler and linker
-CC=g++
-
-# Flags para o compilador
-# C: Compila mas não chama o linker
-# Wall: mostra todos os warnings
-# Wextra:  Warnings que o wall não mostra
-# ansi: Só roda c++ padrão.  
-# pedantic: Rejeita c++ não padrão
-CC_FLAGS=-c         \
-	 -Wextra    \
-         -Wall      \
-         -ansi      \
-         -pedantic
-		 
-
-# Command used at clean target
-RM = rm -rf
-
-
-# Compilation and linking
-
-all: $(PROJ_NAME)
-
-$(PROJ_NAME): $(OBJ)
-	@ echo 'Building binary using G++ linker: $@'
-	$(CC) $^ -o $@
-	@ echo 'Finished building binary: $@'
-	@ echo ' '
-
-./objects/%.o: ./*.cpp ./*.hpp
-	@ echo 'Building target using G++ compiler: $<'
-	$(CC) $< $(CC_FLAGS) -o $@
-	@ echo ' '
-
-./objects/main.o: ./main.cpp (HPP_SOURCE)
-@ echo 'Building target using G++ compiler: $<'
-	$(CC) $< $(CC_FLAGS) -o $@
-	@ echo ' '
+all:
+	g++ ./Entrada_Aleatoria/cpp/Aeroporto.cpp ./Entrada_Aleatoria/cpp/Aviao.cpp ./Entrada_Aleatoria/cpp/Fila_Aerea.cpp ./Entrada_Aleatoria/cpp/Fila_Aterrissagem_P3.cpp ./Entrada_Aleatoria/cpp/Fila_Decolagem.cpp ./Entrada_Aleatoria/cpp/pista_emergencia.cpp ./Entrada_Aleatoria/cpp/pista.cpp  ./Entrada_Aleatoria/hpp/pista.hpp  ./Entrada_Aleatoria/hpp/pista_emergencia.hpp ./Entrada_Aleatoria/hpp/Fila_Decolagem.hpp  ./Entrada_Aleatoria/hpp/Fila_Aerea.hpp ./Entrada_Aleatoria/hpp/Fila_Aterrissagem_P3.hpp ./Entrada_Aleatoria/hpp/Aviao.hpp ./Entrada_Aleatoria/hpp/Aeroporto.hpp main.cpp -o executavel
 
 clean:
-	@ $(RM) ./*.o $(PROJ_NAME) *~
-	
+	rm -rf executavel
 
-.TUDO: all clean
+run:
+	./executavel
