@@ -3,7 +3,7 @@
 
 //inicio das bibliotecas
 #include"pista.hpp"
-#include"pista_emergincia.hpp"
+#include"pista_emergencia.hpp"
 //fim das bibliotecas
 
 

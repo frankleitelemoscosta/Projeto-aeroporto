@@ -1,6 +1,6 @@
 
 //inicio das bibliotecas
-#include"pista.hpp"
+#include"/home/frank/Documentos/TODOS OS ARQUIVOS(ATIVIDADES, LIVROS, ETC)DA FACULDADE/SEGUNDO PERIODO/PROG2/SEGUNDO TRABALHO/Entrada_com_arquivo/hpp/pista.hpp"
 //fim das bibliotecas
 
 Pista::Pista()

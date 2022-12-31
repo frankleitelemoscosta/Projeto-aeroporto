@@ -6,12 +6,12 @@
 
 
 //inicio das bibliotecas
-    #include "Fila_Aerea.hpp"
+    #include "/home/frank/Documentos/TODOS OS ARQUIVOS(ATIVIDADES, LIVROS, ETC)DA FACULDADE/SEGUNDO PERIODO/PROG2/SEGUNDO TRABALHO/Entrada_com_arquivo/hpp/Fila_Aerea.hpp"
     #include <iostream>
     #include <string>
     #include <cstring>
     #include <iomanip>
-    #include"Fila_Aterrissagem_P3.hpp"
+    #include"/home/frank/Documentos/TODOS OS ARQUIVOS(ATIVIDADES, LIVROS, ETC)DA FACULDADE/SEGUNDO PERIODO/PROG2/SEGUNDO TRABALHO/Entrada_com_arquivo/hpp/Fila_Aterrissagem_P3.hpp"
     using namespace std;
 //fim das bibliotecas
 

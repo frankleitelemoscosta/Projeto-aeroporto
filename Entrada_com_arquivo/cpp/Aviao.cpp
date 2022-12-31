@@ -1,5 +1,5 @@
 //inicio das bibliotecas
-  #include "Aviao.hpp"
+  #include "/home/frank/Documentos/TODOS OS ARQUIVOS(ATIVIDADES, LIVROS, ETC)DA FACULDADE/SEGUNDO PERIODO/PROG2/SEGUNDO TRABALHO/Entrada_com_arquivo/hpp/Aviao.hpp"
 //fim das bibliotecas
 
 Aviao::Aviao(){//construtor vazio

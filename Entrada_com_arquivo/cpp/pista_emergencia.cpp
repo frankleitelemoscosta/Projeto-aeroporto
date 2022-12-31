@@ -1,5 +1,5 @@
 //inicio das bibliotecas
-#include"pista_emergincia.hpp"
+#include"/home/frank/Documentos/TODOS OS ARQUIVOS(ATIVIDADES, LIVROS, ETC)DA FACULDADE/SEGUNDO PERIODO/PROG2/SEGUNDO TRABALHO/Entrada_com_arquivo/hpp/pista_emergencia.hpp"
 //fim das bibliotecas
 
 Pista_de_emergencia::Pista_de_emergencia()

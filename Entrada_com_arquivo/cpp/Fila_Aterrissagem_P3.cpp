@@ -5,7 +5,7 @@
 // compile com: g++ Fila_Aterrissagem_P3.hpp Fila_Aterrissagem_P3.cpp Fila_jur.hpp Fila_jur.cpp Aviao.hpp Aviao.cpp Pessoa_jur.hpp Pessoa_jur.cpp Pessoa.hpp Pessoa.hpp main.cpp -o ex
 
 //inicio das bibliotecas
-    #include "Fila_Aterrissagem_P3.hpp"
+    #include "/home/frank/Documentos/TODOS OS ARQUIVOS(ATIVIDADES, LIVROS, ETC)DA FACULDADE/SEGUNDO PERIODO/PROG2/SEGUNDO TRABALHO/Entrada_com_arquivo/hpp/Fila_Aterrissagem_P3.hpp"
     #include <iostream>
     #include <string>
     #include <cstring>
